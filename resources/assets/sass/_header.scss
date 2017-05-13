@@ -1,0 +1,16 @@
+// Variables
+@import "variables";
+
+header.header {
+  background: $header-bg;
+}
+
+.navbar-nav {
+  > li > a {
+      transition: color .5s ease;
+  }
+}
+
+.navbar-brand {
+    transition: color .5s ease;
+}

@@ -1,0 +1,19 @@
+// Variables
+@import "variables";
+
+footer.footer {
+  background: $footer-bg;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 500px 0 500px $footer-bg;
+  color: $footer-text-color;
+  a {
+    color: $footer-link-color;
+    transition: color .5s ease;
+    text-decoration: none;
+    &:hover,
+    &:focus {
+      color: $footer-link-hover-color;
+    }
+  }
+}
