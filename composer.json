@@ -8,10 +8,12 @@
         "php": ">=5.6.4",
         "abrigham/laravel-email-exceptions": "^1.0.0",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "sven/env-providers": "^3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.3",
+        "barryvdh/laravel-ide-helper": "^2.3",
         "fzaninotto/faker": "~1.4",
         "laravel/homestead": "^5.2",
         "mockery/mockery": "0.9.*",
@@ -43,6 +45,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ]
     },

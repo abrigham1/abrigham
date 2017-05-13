@@ -4,5 +4,5 @@
 
 @section('content')
     <h1>Machine Learning with Scikit Learn</h1>
-    <movie-review-form></movie-review-form>
+    @include('components.MovieReviewForm')
 @endsection

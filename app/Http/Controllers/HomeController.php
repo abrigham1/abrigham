@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**
-     * Show the homepage
+     * show the homepage
      *
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show()
     {

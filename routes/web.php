@@ -11,3 +11,5 @@
 |
 */
 Route::get('/', 'HomeController@show')->name('home');
+
+Route::post('/predict-review', 'MovieReviewPredictController@predict')->name('predict-review');

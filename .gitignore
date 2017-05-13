@@ -3,6 +3,8 @@
 vendor/
 node_modules/
 npm-debug.log
+.phpstorm.meta.php
+_ide_helper.php
 
 # Laravel 4 specific
 bootstrap/compiled.php
