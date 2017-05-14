@@ -1,25 +1,28 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Orbitron|Roboto');
-
 // Variables
 @import "variables";
-
+// Mixins
+@import "mixins";
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 // Layout
 @import "layout";
-
 // Header
 @import "header";
-
 // Footer
 @import "footer";
 
 body {
   background: $body-bg;
 }
+
+img.deadLink {
+  display: block;
+  margin: auto;
+}
+
 .btn-default {
   transition: all .5s ease;
 }
+

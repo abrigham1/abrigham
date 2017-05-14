@@ -1,5 +1,7 @@
 // Variables
 @import "variables";
+// Mixins
+@import "mixins";
 
 footer.footer {
   background: $footer-bg;
@@ -8,12 +10,17 @@ footer.footer {
   box-shadow: 0 500px 0 500px $footer-bg;
   color: $footer-text-color;
   a {
-    color: $footer-link-color;
-    transition: color .5s ease;
-    text-decoration: none;
+    @include sliding-middle-out($sliding-underline-height, $footer-link-color);
+    &:after {
+      @include sliding-middle-out-after($sliding-underline-height, $footer-link-color);
+    }
     &:hover,
     &:focus {
-      color: $footer-link-hover-color;
+      @include sliding-middle-out-hover($footer-link-hover-color);
+    }
+    &:hover:after,
+    &:focus:after {
+      @include sliding-middle-out-hover-after($footer-link-hover-color);
     }
   }
 }
