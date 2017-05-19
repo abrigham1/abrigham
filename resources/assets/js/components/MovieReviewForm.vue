@@ -11,8 +11,7 @@
                 error: null,
                 showError: null,
                 showThinking: false,
-                showResults: false,
-                transitionTo: null
+                showResults: false
             }
         },
         methods: {
