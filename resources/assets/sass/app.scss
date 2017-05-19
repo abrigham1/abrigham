@@ -26,3 +26,6 @@ img.deadLink {
   transition: all .5s ease;
 }
 
+[v-cloak] {
+  display: none;
+}

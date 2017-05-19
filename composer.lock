@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "abrigham/laravel-email-exceptions",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abrigham1/laravel-email-exceptions.git",
-                "reference": "ca3935b40a92476e2fb7794ab305a232a20da215"
+                "reference": "04264ad1998c6ebe30f4a873cc155b1649e6cace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abrigham1/laravel-email-exceptions/zipball/ca3935b40a92476e2fb7794ab305a232a20da215",
-                "reference": "ca3935b40a92476e2fb7794ab305a232a20da215",
+                "url": "https://api.github.com/repos/abrigham1/laravel-email-exceptions/zipball/04264ad1998c6ebe30f4a873cc155b1649e6cace",
+                "reference": "04264ad1998c6ebe30f4a873cc155b1649e6cace",
                 "shasum": ""
             },
             "require": {
@@ -48,11 +48,14 @@
             ],
             "description": "Email Exceptions from your laravel application",
             "keywords": [
+                "debugging",
                 "email",
                 "exception",
-                "laravel"
+                "exception-handling",
+                "laravel",
+                "laravel-5-package"
             ],
-            "time": "2017-05-03T16:37:48+00:00"
+            "time": "2017-05-19T10:23:37+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -876,16 +879,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.8.4",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "17cf432bb80d9198df239b80d00a29155bd74d82"
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/17cf432bb80d9198df239b80d00a29155bd74d82",
-                "reference": "17cf432bb80d9198df239b80d00a29155bd74d82",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/38a9d21406597a0440690eafbcb0222f528c8ac6",
+                "reference": "38a9d21406597a0440690eafbcb0222f528c8ac6",
                 "shasum": ""
             },
             "require": {
@@ -945,7 +948,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2017-05-12T15:41:55+00:00"
+            "time": "2017-05-17T06:49:19+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -2276,16 +2279,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v5.3.0",
+            "version": "v5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "30538185078f3226a75953eaa57efa0cde145981"
+                "reference": "65fb7c5cba2847fcb95eb0758ac2696b19d06277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/30538185078f3226a75953eaa57efa0cde145981",
-                "reference": "30538185078f3226a75953eaa57efa0cde145981",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/65fb7c5cba2847fcb95eb0758ac2696b19d06277",
+                "reference": "65fb7c5cba2847fcb95eb0758ac2696b19d06277",
                 "shasum": ""
             },
             "require": {
@@ -2322,7 +2325,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2017-05-12T03:00:20+00:00"
+            "time": "2017-05-19T08:20:56+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -3202,23 +3205,23 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e"
+                "reference": "3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/13edfd8706462032c2f52b4b862974dd46b71c9e",
-                "reference": "13edfd8706462032c2f52b4b862974dd46b71c9e",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2",
+                "reference": "3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -3250,7 +3253,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2015-12-08T07:14:41+00:00"
+            "time": "2017-05-18T13:44:30+00:00"
         },
         {
             "name": "sebastian/environment",

@@ -44,6 +44,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // we have a custom response for our PredictionException so
+        // return that
+        if ($exception instanceof PredictionException) {
+            return $exception->getResponse();
+        }
         return parent::render($request, $exception);
     }
 

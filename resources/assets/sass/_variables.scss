@@ -43,7 +43,7 @@ $navbar-default-link-disabled-color:       #cccccc !default;
 $navbar-default-link-disabled-bg:          transparent !default;
 
 // Footer
-$footer-link-color:               #ffffff !default;
+$footer-link-color:               $navbar-default-link-color !default;
 $footer-link-hover-color:         darken($footer-link-color, 10%) !default;
 $footer-text-color:               #D3D3D3 !default;
 

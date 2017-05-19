@@ -5,7 +5,7 @@ wget https://repo.continuum.io/archive/Anaconda3-4.3.1-Linux-x86_64.sh -O ~/anac
 bash ~/anaconda.sh -b -p ~/anaconda
 rm -f ~/anaconda.sh
 # add conda to our path
-export PATH="$HOME/anaconda/bin:$PATH"
+export PATH="~/anaconda/bin:$PATH"
 # Refresh .bashrc so we can use the conda command
 source .bashrc
 conda update conda -y

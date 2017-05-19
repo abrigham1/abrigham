@@ -6,8 +6,9 @@
  */
 
 require('./bootstrap');
-
 window.Vue = require('vue');
+VeeValidate = require('vee-validate');
+window.Vue.use(VeeValidate);
 
 $(document).ready(function () {
     /**
