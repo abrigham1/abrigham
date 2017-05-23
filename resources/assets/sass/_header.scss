@@ -6,18 +6,9 @@
 header.header {
   background: $header-bg;
   .navbar-brand {
-    @include sliding-middle-out($sliding-underline-height, $navbar-default-brand-color);
-    &:after {
-      @include sliding-middle-out-after($sliding-underline-height, $footer-link-color);
-    }
-    &:hover,
-    &:focus {
-      @include sliding-middle-out-hover($navbar-default-brand-hover-color);
-    }
-    &:hover:after,
-    &:focus:after {
-      @include sliding-middle-out-hover-after($navbar-default-brand-hover-color);
-    }
+    height: 48px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 

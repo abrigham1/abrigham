@@ -78,6 +78,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../../sass/variables';
     .fade-enter-active, .fade-leave-active {
         transition: opacity .5s
     }
@@ -88,5 +89,8 @@
         label.results, label.error {
             float: right;
         }
+    }
+    .results {
+        font-family: $font-family-robot;
     }
 </style>
