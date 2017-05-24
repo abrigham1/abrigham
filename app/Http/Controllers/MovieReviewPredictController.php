@@ -43,12 +43,12 @@ class MovieReviewPredictController extends Controller
         $pythonCommand = env('PYTHON_INTERPRETER');
 
         // normalize the python command and add a space
-        $pythonCommand = trim($pythonCommand) . ' ';
+        $pythonCommand = trim($pythonCommand).' ';
 
 
         // we forgot to set up our python interpreter location
         // in our env file throw and exception
-        if ( ! $pythonCommand) {
+        if (!$pythonCommand) {
             $exceptionMessage = "Can't find python interpreter please ensure its set up in the env file";
             throw new PredictionException($exceptionMessage, $request);
         }
@@ -80,6 +80,5 @@ class MovieReviewPredictController extends Controller
             'label' => $label,
             'probability' => $probability,
         ]);
-
     }
 }
