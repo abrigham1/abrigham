@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/sites/abrigham
+permissions:
+  - object: /var/www/sites/abrigham
+    owner: www-data
+    group: www-data
+    mode: 775
+    type:
+      - file
+
+  - object: /var/www/sites/abrigham
+    owner: www-data
+    group: www-data
+    mode: 755
+    type:
+      - directory
+      
