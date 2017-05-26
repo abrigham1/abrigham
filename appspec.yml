@@ -17,4 +17,13 @@ permissions:
     mode: 755
     type:
       - directory
-      
+
+hooks:
+  BeforeInstall:
+    - location: beforeInstall.sh
+      timeout: 300
+
+  ApplicationStart:
+    - location: applicationStart.sh
+      timeout: 300
+
