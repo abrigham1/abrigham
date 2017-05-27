@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# move to our current deployment directory
+cd /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/
+
 # run composer install this also runs php artisan optimize
 composer install --no-dev --optimize-autoloader --no-interaction
 
