@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-# move
-cd /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/
-
 # run composer install this also runs php artisan optimize
 # composer install --no-dev --optimize-autoloader --no-interaction
 
 # clear our caches and cache our routes and config
-php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/artisan cache:clear
-php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/artisan view:clear
-php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/artisan route:cache
-php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_GROUP_ID/artisan config:cache
+php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/artisan cache:clear
+php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/artisan view:clear
+php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/artisan route:cache
+php /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/artisan config:cache
 
 # install npm dependencies
 #npm install
