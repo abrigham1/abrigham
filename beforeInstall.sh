@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
-# run composer install this also runs a number of other commands from the composer.json file
-# php artisan optimize
-# php artisan cache:clear
-# php artisan view:clear
-# php artisan route:cache
-# php artisan config:cache
-# npm install
-# npm run prod
-composer install --no-dev --optimize-autoloader --prefer-source --no-interaction
+# run composer install this also runs php artisan optimize
+composer install --no-dev --optimize-autoloader --no-interaction
+
+# clear our caches and cache our routes and config
+php artisan cache:clear
+php artisan view:clear
+php artisan route:cache
+php artisan config:cache
+
+# install npm dependencies
+npm install
+
+# run production assets
+npm run prod
 
 # run artisan down on the codebase note we are currently in a tmp deploy directory
 # so we need to give a path to the actual directory

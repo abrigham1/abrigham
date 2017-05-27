@@ -10,3 +10,5 @@ Homestead.yaml
 npm-debug.log
 .env
 /public/mix-manifest.json
+.phpstorm.meta.php
+_ide_helper.php
