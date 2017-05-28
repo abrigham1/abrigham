@@ -18,6 +18,8 @@ npm install
 # run production assets
 npm run prod
 
+blahtest
+
 # run any migrations necessary the application is down now
 # currently we have no database or migrations so this is commented out
 # php artisan migrate
