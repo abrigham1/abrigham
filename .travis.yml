@@ -1,34 +1,31 @@
 language: php
 
-php:
-  - 7.1
-
-matrix:
-  fast_finish: true
-
-  include:
-    - php: 7.1
-      env: PHPCS=1
-
-install:
-  - ./after.sh
-
-before_script:
-  - cp .env.travis .env
-  - composer self-update
-  - composer install --prefer-source --no-interaction
-  - php artisan key:generate
-
-script:
-  - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
-  - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
-
 notifications:
   email: false
 
 jobs:
   include:
-    - stage: deploy
+    - stage: Test
+      php: 7.1
+      matrix:
+        fast_finish: true
+        include:
+          - php: 7.1
+          - env: PHPCS=1
+      install:
+        - ./after.sh
+
+      before_script:
+        - cp .env.travis .env
+        - composer self-update
+        - composer install --prefer-source --no-interaction
+        - php artisan key:generate
+
+      script:
+        - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
+        - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
+    - stage: Deploy
+      script: skip
       node_js: 7
       before_deploy:
         - composer install --no-dev --optimize-autoloader --no-interaction
