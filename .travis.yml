@@ -6,11 +6,13 @@ notifications:
 jobs:
   include:
     - stage: Test
-      php:
-        - 7.1
-      env:
-        - PHPCS=1
-        - PHPCS=0
+      php: 7.1
+      matrix:
+        include:
+          - php: 7.1
+            env: PHPCS=1
+          - php: 7.1
+            env: PHPCS=0
       install:
         - ./after.sh
       before_script:
