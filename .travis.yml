@@ -7,6 +7,7 @@ jobs:
   include:
     - stage: Test
       php: 7.1
+      env: # important!
       matrix:
         include:
           - php: 7.1
