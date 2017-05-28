@@ -22,6 +22,7 @@ jobs:
         - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
     - stage: Deploy
       script: skip
+      php: 7.1
       node_js: 7
       before_deploy:
         - composer install --no-dev --optimize-autoloader --no-interaction
