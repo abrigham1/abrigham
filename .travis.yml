@@ -7,20 +7,16 @@ jobs:
   include:
     - stage: Test
       php: 7.1
-      matrix:
-        fast_finish: true
-        include:
-          - php: 7.1
-          - env: PHPCS=1
+      env:
+        - PHPCS=1
+        - PHPCS=0
       install:
         - ./after.sh
-
       before_script:
         - cp .env.travis .env
         - composer self-update
         - composer install --prefer-source --no-interaction
         - php artisan key:generate
-
       script:
         - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
         - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
@@ -38,7 +34,6 @@ jobs:
         - zip -r latest *
         - mkdir -p cd_upload
         - mv latest.zip cd_upload/latest.zip
-
       deploy:
         - provider: s3
           access_key_id: AKIAJUBHSOK262RJXOZQ
