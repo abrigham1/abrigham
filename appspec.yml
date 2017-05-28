@@ -19,11 +19,14 @@ permissions:
       - directory
 
 hooks:
-  BeforeInstall:
-    - location: beforeInstall.sh
+  ApplicationStop:
+    - location: DeployScripts/applicationStop.sh
+
+  AfterInstall:
+    - location: DeployScripts/afterInstall.sh
       timeout: 300
 
   ApplicationStart:
-    - location: applicationStart.sh
+    - location: DeployScripts/applicationStart.sh
       timeout: 300
 
