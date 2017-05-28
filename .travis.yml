@@ -27,7 +27,7 @@ notifications:
   email: false
 
 before_deploy:
-  - DeployScripts/beforeDeploy.sh
+  - ./DeployScripts/beforeDeploy.sh
 
 deploy:
   - provider: s3
