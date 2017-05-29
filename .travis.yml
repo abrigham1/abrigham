@@ -11,20 +11,17 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction
   - php artisan key:generate
+script:
+  - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
+  - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
 jobs:
   include:
-    - stage: Test
-      php: 7.1
-      matrix:
-        include:
-        - php: 7.1
-          env: PHPCS=1
-      script:
-        - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
-        - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
     - stage: Deploy
-      script: echo "hello";
       php: 7.1
+      install: skip
+      before_script: skip
+      script: echo "hello";
+
 #      install: skip
 #      before_script: skip
 #      before_deploy:
