@@ -1,6 +1,7 @@
 language: php
 php: 7.1
 env:
+  - PHPCS=0
   - PHPCS=1
 install:
   - ./after.sh
