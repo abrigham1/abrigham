@@ -1,5 +1,5 @@
 language: php
-
+env:
 install:
   - ./after.sh
 before_script:
