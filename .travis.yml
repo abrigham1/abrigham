@@ -1,6 +1,5 @@
 language: php
 php: 7.1
-env:
 install:
   - ./after.sh
 before_script:
@@ -13,18 +12,12 @@ jobs:
     - stage: Test
       matrix:
         include:
-        - php: 7.1
-          env:
-        - php: 7.1
-          env: PHPCS=1
+        - env:
+        - env: PHPCS=1
       script:
         - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
         - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
     - stage: Deploy
-      matrix:
-        include:
-        - php: 7.1
-          env:
       script: echo "hello";
 #      php: 7.1
 #      install: skip
