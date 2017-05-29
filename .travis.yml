@@ -1,9 +1,9 @@
 language: php
 php: 7.1
-matrix:
-  include:
-    - php: 7.1
-      env: PHPCS=1
+#matrix:
+#  include:
+#    - php: 7.1
+#      env: PHPCS=1
 install:
   - ./after.sh
 before_script:
