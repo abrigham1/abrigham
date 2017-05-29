@@ -16,15 +16,3 @@ permissions:
     mode: 755
     type:
       - directory
-#hooks:
-#  ApplicationStop:
-#    - location: DeployScripts/applicationStop.sh
-#      timeout: 300
-#
-#  AfterInstall:
-#    - location: DeployScripts/afterInstall.sh
-#      timeout: 300
-#
-#  ApplicationStart:
-#    - location: DeployScripts/applicationStart.sh
-#      timeout: 300
