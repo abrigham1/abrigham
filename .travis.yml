@@ -4,7 +4,7 @@ matrix:
   - php: 7.1
     env: PHPCS=0
   - php: 7.1
-    env: PHPCS=0
+    env: PHPCS=1
 install:
   - ./after.sh
 before_script:
