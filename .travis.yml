@@ -11,6 +11,8 @@ script:
   - vendor/bin/phpunit;
   - vendor/bin/phpcs --standard=psr2 ./app/Http;
   - echo "hello world";
+notifications:
+  email: false
 jobs:
   include:
     - stage: Deploy
