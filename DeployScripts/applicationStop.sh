@@ -4,4 +4,4 @@
 cd /var/www/sites/abrigham
 
 # put the application in maintenance mode
-#php artisan down
+php artisan down

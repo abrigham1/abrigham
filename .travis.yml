@@ -24,10 +24,6 @@ jobs:
       script: skip
       before_deploy:
         - composer install --no-dev --optimize-autoloader --no-interaction
-        - php artisan cache:clear
-        - php artisan view:clear
-        - php artisan route:cache
-        - php artisan config:cache
         - npm install
         - npm run prod
         - zip -r latest *
