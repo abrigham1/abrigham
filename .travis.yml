@@ -3,6 +3,12 @@ php: 7.1
 env:
   - PHPCS=0
   - PHPCS=1
+matrix:
+  include:
+  - php: 7.1
+    env: PHPCS=0
+  - php: 7.1
+    env: PHPCS=0
 install:
   - ./after.sh
 before_script:
@@ -17,7 +23,6 @@ jobs:
         - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
         - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs --standard=psr2 ./app/Http; fi
     - stage: Deploy
-      php: 7.1
       script: echo "hello";
 #      php: 7.1
 #      install: skip
