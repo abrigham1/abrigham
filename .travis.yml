@@ -33,6 +33,7 @@ jobs:
         - mv latest.zip cd_upload/latest.zip
       deploy:
         - provider: s3
+          skip_cleanup: true
           access_key_id: AKIAJUBHSOK262RJXOZQ
           secret_access_key: &1
             secure: TJHZ3im4N7Wt5vwb3wZYb1cOWX22Edw2Lz3bP7gPd6Awmee2Df5BrWWpQYRgUEFjbhD0GhK4ZiGUg4SiTrt7AgebxqHS/NVzgQK1mqK9A0jCHuQwvXEmFqp5mn2ZzGALFAqB06799/niIS/vVW3bWMbF4/z4MT/gL3FsQQZ80dQF9Pu7jKz6D+HRAfrez3v7agZkVT5AexJKdIAeJsYjwBAYWRoGc27IHNYr+1uP3r5XD5UxC5h4PVzHsLY59PTB7cYbJw5acszYloo4PwYvIuM6w3w0AN++e19SmVPfH1FgfHOkKUcez/Np64Hky1z8cCdYiRFSh1XKsiQojTShBC4hzwGBDSysFB8ip7kxKWdNtxC2NHWXxD0IUpJWqxCM1DnuITNRXvp09L23oiAKRenSYP1tnVP563xAIqp4FOhSsuINNmMcqHzK0OpgivVF5ton/EJGMnCQ/0Sqt7+9hzmofqXtXMwytErN9BJ5GmIClLWnPSwb3NEL6L+yDZw/lEnfkroizOjQSWca1Mw208r9ZWwHEAso2qaglwgjjxfkboYx6x1UVqPw0nZji0jHlYcUJMeSEZNVWQkEWrePFDsoWf03bjBKzDuePcWqzm1PXvYgAl+VFzrcKNdkt7aeRNagkxScc7b2B9OToVncei3BM72sewF3pMC2fCxpWW0=
@@ -41,6 +42,7 @@ jobs:
             branch: master
           bucket: abrigham.com
         - provider: codedeploy
+          skip_cleanup: true
           access_key_id: AKIAJUBHSOK262RJXOZQ
           secret_access_key: *1
           bucket: abrigham.com
