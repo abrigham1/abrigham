@@ -3,10 +3,8 @@ php: 7.1
 env:
   - PHPCS=1
   - PHPCS=0
-  
 matrix:
   exclude:
-  - php: 7.1
   - env: PHPCS=1 PHPCS=0
 
 install:
