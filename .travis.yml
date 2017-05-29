@@ -1,8 +1,4 @@
 language: php
-php: 7.1
-env:
-  - PHPCS=0
-  - PHPCS=1
 install:
   - ./after.sh
 before_script:
@@ -13,6 +9,10 @@ before_script:
 jobs:
   include:
     - stage: Test
+      php: 7.1
+      env:
+        - PHPCS=0
+        - PHPCS=1
       matrix:
         include:
         - env: PHPCS=0
