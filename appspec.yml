@@ -10,14 +10,12 @@ permissions:
     mode: 775
     type:
       - file
-
   - object: /var/www/sites/abrigham
     owner: www-data
     group: www-data
     mode: 755
     type:
       - directory
-
 #hooks:
 #  ApplicationStop:
 #    - location: DeployScripts/applicationStop.sh
