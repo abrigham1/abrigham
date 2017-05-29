@@ -40,7 +40,7 @@ class MovieReviewPredictController extends Controller
         $review = $request->input('review');
 
         // the location of our python command
-        $pythonCommand = env('PYTHON_INTERPRETER');
+        $pythonCommand = config('python.interpreter');
 
         // normalize the python command and add a space
         $pythonCommand = trim($pythonCommand).' ';
