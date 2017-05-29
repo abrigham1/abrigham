@@ -1,15 +1,15 @@
 language: php
 php: 7.1
-#install:
-#  - ./after.sh
-#before_script:
-#  - cp .env.travis .env
-#  - composer self-update
-#  - composer install --prefer-source --no-interaction
-#  - php artisan key:generate
+install:
+  - ./after.sh
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --prefer-source --no-interaction
+  - php artisan key:generate
 script:
-#  - vendor/bin/phpunit;
-#  - vendor/bin/phpcs --standard=psr2 ./app/Http;
+  - vendor/bin/phpunit;
+  - vendor/bin/phpcs --standard=psr2 ./app/Http;
   - echo "hello world";
 jobs:
   include:
@@ -21,13 +21,13 @@ jobs:
       before_script: skip
       script: skip
       before_deploy:
-#        - composer install --no-dev --optimize-autoloader --no-interaction
-#        - php artisan cache:clear
-#        - php artisan view:clear
-#        - php artisan route:cache
-#        - php artisan config:cache
-#        - npm install
-#        - npm run prod
+        - composer install --no-dev --optimize-autoloader --no-interaction
+        - php artisan cache:clear
+        - php artisan view:clear
+        - php artisan route:cache
+        - php artisan config:cache
+        - npm install
+        - npm run prod
         - zip -r latest *
         - mkdir -p cd_upload
         - mv latest.zip cd_upload/latest.zip
