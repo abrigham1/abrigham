@@ -10,14 +10,9 @@ jobs:
   include:
     - stage: Test
       php: 7.1
-      env:
-        - PHPCS=0
-        - PHPCS=1
       matrix:
         include:
         - php: 7.1
-          env: PHPCS=0
-        - php: 7.1  
           env: PHPCS=1
       script:
         - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
