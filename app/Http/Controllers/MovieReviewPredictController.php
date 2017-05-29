@@ -66,7 +66,8 @@ class MovieReviewPredictController extends Controller
         $output = shell_exec($command);
         if (!preg_match('/^(positive|negative),([+-]?([0-9]*[.])?[0-9]+)$/', $output)) {
             // output doesn't match what we expect lets throw an exception
-            $exceptionMessage = "There has been an error calling a shell script. COMMAND: \"{$command}\" OUTPUT: \"{$output}\"";
+            $exceptionMessage = "There has been an error calling a shell script. COMMAND: "
+                ."\"{$command}\" OUTPUT: \"{$output}\"";
             throw new PredictionException($exceptionMessage, $request);
         }
 

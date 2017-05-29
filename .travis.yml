@@ -10,7 +10,6 @@ before_script:
 script:
   - vendor/bin/phpunit;
   - vendor/bin/phpcs --standard=psr2 ./app/Http;
-  - echo "hello world";
 notifications:
   email: false
 jobs:
