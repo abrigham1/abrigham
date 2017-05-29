@@ -1,5 +1,8 @@
 language: php
 php: 7.1
+env:
+  - PHPCS=0
+  - PHPCS=1
 install:
   - ./after.sh
 before_script:
@@ -12,7 +15,7 @@ jobs:
     - stage: Test
       matrix:
         include:
-        - env:
+        - env: PHPCS=0
         - env: PHPCS=1
       script:
         - if [[ $PHPCS != '1' ]]; then vendor/bin/phpunit; fi
