@@ -1,5 +1,8 @@
 language: php
 php: 7.1
+env:
+  - PHPCS=0
+  - PHPCS=1
 install:
   - ./after.sh
 before_script:
@@ -14,6 +17,7 @@ jobs:
   include:
     - stage: Deploy
       php: 7.1
+      env:
       install: skip
       before_script: skip
       script: echo "hello";
