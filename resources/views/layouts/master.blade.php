@@ -27,11 +27,6 @@
             <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
         @endsection
         @yield('css')
-        @section('js')
-            <script src="{{ mix('js/app.js') }}"></script>
-        @endsection
-        @yield('js')
-
     </head>
     <body>
         <div id="app">
@@ -41,5 +36,9 @@
             </div>
             @include('layouts.footer')
         </div>
+        @section('js')
+            <script src="{{ mix('js/app.js') }}"></script>
+        @endsection
+        @yield('js')
     </body>
 </html>
