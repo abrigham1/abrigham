@@ -4,12 +4,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | Python Interpreter
     |--------------------------------------------------------------------------
     |
     | This value is the location of the python interpreter we will use
     | when we need to run python scripts for the project
     */
 
-    'interpreter' => env('PYTHON_INTERPRETER', 'test'),
+    'interpreter' => env('PYTHON_INTERPRETER', '/home/vagrant/anaconda/bin'),
 ];
