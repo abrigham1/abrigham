@@ -39,6 +39,7 @@
                 this.camera.position.y = 150;
                 this.camera.position.z = 500;
                 this.controls = new THREE.TrackballControls( this.camera );
+                this.controls.rotateSpeed = 3.0;
                 this.scene = new THREE.Scene();
                 let light = new THREE.PointLight( 0xffffff );
                 light.position.set( 500, 500, 500 );
