@@ -21,9 +21,6 @@ jobs:
     - stage: Test
     # using travis build stages, deploy will only run if all jobs in the test stage have passed
     - stage: Deploy
-      # only run deploy stage on master branch
-      on: &2
-        branch: master
       php: 7.1
       # we're using this to install a newer version of node and npm so we can compile our assets before we deploy them
       env: TRAVIS_NODE_VERSION="7.9.0"
@@ -52,7 +49,8 @@ jobs:
             secure: TJHZ3im4N7Wt5vwb3wZYb1cOWX22Edw2Lz3bP7gPd6Awmee2Df5BrWWpQYRgUEFjbhD0GhK4ZiGUg4SiTrt7AgebxqHS/NVzgQK1mqK9A0jCHuQwvXEmFqp5mn2ZzGALFAqB06799/niIS/vVW3bWMbF4/z4MT/gL3FsQQZ80dQF9Pu7jKz6D+HRAfrez3v7agZkVT5AexJKdIAeJsYjwBAYWRoGc27IHNYr+1uP3r5XD5UxC5h4PVzHsLY59PTB7cYbJw5acszYloo4PwYvIuM6w3w0AN++e19SmVPfH1FgfHOkKUcez/Np64Hky1z8cCdYiRFSh1XKsiQojTShBC4hzwGBDSysFB8ip7kxKWdNtxC2NHWXxD0IUpJWqxCM1DnuITNRXvp09L23oiAKRenSYP1tnVP563xAIqp4FOhSsuINNmMcqHzK0OpgivVF5ton/EJGMnCQ/0Sqt7+9hzmofqXtXMwytErN9BJ5GmIClLWnPSwb3NEL6L+yDZw/lEnfkroizOjQSWca1Mw208r9ZWwHEAso2qaglwgjjxfkboYx6x1UVqPw0nZji0jHlYcUJMeSEZNVWQkEWrePFDsoWf03bjBKzDuePcWqzm1PXvYgAl+VFzrcKNdkt7aeRNagkxScc7b2B9OToVncei3BM72sewF3pMC2fCxpWW0=
           local_dir: cd_upload
           # only deploy from master branch
-          on: *2
+          on: &2
+            branch: master
           bucket: abrigham.com
         # deploy from s3 to our ec2 instance(s) using aws codedeploy
         - provider: codedeploy
@@ -64,5 +62,4 @@ jobs:
           bundle_type: zip
           application: abrigham
           deployment_group: Production
-          # only run code deploy from master branch
           on: *2
