@@ -17,6 +17,7 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "vue": "^2.1.10",
-    "vee-validate": "^2.0.0-rc.3"
+    "vee-validate": "^2.0.0-rc.3",
+    "three": "^0.85.2"
   }
 }

@@ -12,4 +12,6 @@
 */
 Route::get('/', 'HomeController@show')->name('home');
 
+Route::get('/three', 'ThreeDemoController@show')->name('three-demo');
+
 Route::post('/predict-review', 'MovieReviewPredictController@predict')->name('predict-review');
