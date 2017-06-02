@@ -33,9 +33,7 @@
             init: function() {
                 this.container = document.createElement( 'div' );
                 $('#asciiContainer').append( this.container );
-                console.log(window.innerWidth);
                 let width = window.innerWidth / 4 || 2;
-                console.log(width);
                 let height = window.innerWidth / 4 || 2;
                 this.camera = new THREE.PerspectiveCamera( 70, width / height, 1, 1000 );
                 this.camera.position.y = 150;
