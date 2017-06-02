@@ -1,14 +1,18 @@
 language: php
 php: 7.1
+env: TRAVIS_NODE_VERSION="7.9.0"
 # install anaconda, since feature tests are being run it is required
 install:
   - ./after.sh
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
 # set up our testing environment
 before_script:
   - cp .env.travis .env
   - composer self-update
   - composer install --prefer-source --no-interaction
   - php artisan key:generate
+  - npm install
+  - npm run prod
 # run the tests and phpcs
 script:
   - vendor/bin/phpunit;
