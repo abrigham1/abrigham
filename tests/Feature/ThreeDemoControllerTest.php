@@ -16,7 +16,7 @@ class HomeControllerTest extends TestCase
      */
     public function testHomepage()
     {
-        $uri = route('home', [], false);
+        $uri = route('three-demo', [], false);
         $response = $this->get($uri);
 
         $response->assertStatus(200);

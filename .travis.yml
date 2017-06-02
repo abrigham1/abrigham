@@ -18,6 +18,7 @@ notifications:
   email: false
 jobs:
   include:
+    - stage: Test
     # using travis build stages, deploy will only run if all jobs in the test stage have passed
     - stage: Deploy
       php: 7.1
