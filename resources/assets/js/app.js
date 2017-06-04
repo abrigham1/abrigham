@@ -5,15 +5,14 @@
  */
 
 require('./bootstrap');
-window.THREE = require('../../../node_modules/three/build/three.min');
-require('../../../node_modules/three/examples/js/effects/AsciiEffect');
-require('../../../node_modules/three/examples/js/controls/TrackballControls');
-require('../../../node_modules/three/examples/js/renderers/Projector');
-require('../../../node_modules/three/examples/js/renderers/CanvasRenderer');
-require('../../../node_modules/three/examples/js/libs/stats.min');
 window.Vue = require('vue');
 VeeValidate = require('vee-validate');
 window.Vue.use(VeeValidate);
+window.THREE = require('three/build/three.min');
+require('three/examples/js/effects/AsciiEffect');
+require('three/examples/js/controls/TrackballControls');
+require('three/examples/js/renderers/Projector');
+require('three/examples/js/renderers/CanvasRenderer');
 
 $(document).ready(function () {
     /**
