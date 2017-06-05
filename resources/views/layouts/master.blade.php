@@ -21,12 +21,10 @@
                 ga('send', 'pageview');
 
             </script>
-        @endsection
-        @yield('analytics')
+        @show
         @section('css')
             <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-        @endsection
-        @yield('css')
+        @show
     </head>
     <body>
         <div id="app">
@@ -40,7 +38,6 @@
             <script src="{{ mix('js/manifest.js') }}"></script>
             <script src="{{ mix('js/vendor.js') }}"></script>
             <script src="{{ mix('js/app.js') }}"></script>
-        @endsection
-        @yield('js')
+        @show
     </body>
 </html>
