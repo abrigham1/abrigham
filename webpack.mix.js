@@ -11,9 +11,15 @@ const { mix } = require('laravel-mix');
  |
  */
 
+// Autoload jquery for other vendor libs that require it (bootstrap)
+mix.autoload({
+    'jquery': ['window.jQuery', 'jQuery', '$']
+});
+
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([
         'axios',
+        'bootstrap-sass',
         'jquery',
         'lodash',
         'vue',
