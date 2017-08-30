@@ -166,9 +166,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
-        Sven\EnvProviders\EnvServiceProvider::class,
-        Abrigham\LaravelEmailExceptions\EmailExceptionsServiceProvider::class,
 
         /*
          * Application Service Providers...

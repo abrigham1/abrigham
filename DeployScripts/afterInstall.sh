@@ -3,7 +3,6 @@
 # move to our application directory
 cd /var/www/sites/abrigham
 
-php artisan optimize
 php artisan cache:clear
 php artisan view:clear
 php artisan route:cache
