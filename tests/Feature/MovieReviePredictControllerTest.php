@@ -55,13 +55,32 @@ class MovieReviePredictControllerTest extends TestCase
                 // status
                 422,
                 // json response
-                ["review" => ["The review field is required."]],
+                [
+                    "message" => "The given data was invalid.",
+                    "errors" =>
+                        [
+                            "review" =>
+                                [
+                                    "The review field is required.",
+                                ],
+                        ],
+                ],
             ],
             'review not long enough' => [
                 'test',
                 // status
                 422,
                 // json response
+                [
+                    "message" => "The given data was invalid.",
+                    "errors" =>
+                        [
+                            "review" =>
+                                [
+                                    "The review must be at least 15 characters.",
+                                ],
+                        ],
+                ],
                 ["review" => ["The review must be at least 15 characters."]],
             ],
             'review successful' => [
