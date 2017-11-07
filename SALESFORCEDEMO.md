@@ -74,12 +74,12 @@ you to authenticate if you haven't
 
 ## Overview
 
-The configuration for this demo happens in **_abrigham/.env_** and **_abrigham/config/forrest.php_**
+The configuration for this demo happens in **_[abrigham/.env](https://github.com/abrigham1/abrigham/blob/master/.env.example)_** and **_[abrigham/config/forrest.php](https://github.com/abrigham1/abrigham/blob/master/config/forrest.php)_**
 
-The controller for this demo is **_abrigham/app/Http/Controllers/SalesforceDemoController.php_**
+The controller for this demo is **_[abrigham/app/Http/Controllers/SalesforceDemoController.php](https://github.com/abrigham1/abrigham/blob/master/app/Http/Controllers/SalesforceDemoController.php)_**
 
-The model for this demo is **_abrigham/app/SalesforceContact.php_**
+The model for this demo is **_[abrigham/app/SalesforceContact.php](https://github.com/abrigham1/abrigham/blob/master/app/SalesforceContact.php)_**
 
-The tests for this demo are **_abrigham/tests/Feature/SalesforceDemoControllerTest.php_** and **_abrigham/tests/Unit/SalesforceContactTest.php_**
+The tests for this demo are **_[abrigham/tests/Feature/SalesforceDemoControllerTest.php](https://github.com/abrigham1/abrigham/blob/master/tests/Feature/SalesforceDemoControllerTest.php)_** and **_[abrigham/tests/Unit/SalesforceContactTest.php](https://github.com/abrigham1/abrigham/blob/master/tests/Unit/SalesforceContactTest.php)_**
 
-The routes for this demo happens in **_abrigham/routes/web.php_**
+The routes for this demo happens in **_[abrigham/routes/web.php](https://github.com/abrigham1/abrigham/blob/master/routes/web.php)_**
