@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use \Exception;
+use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
+use Omniphx\Forrest\Exceptions\TokenExpiredException;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 use App\SalesforceContact;
 use Omniphx\Forrest\Exceptions\MissingTokenException;
@@ -75,6 +77,20 @@ class SalesforceDemoController extends Controller
             // to the laravel handler so devs will be emailed since we dont know how
             // to fix them for now.
             return redirect()->route('salesforce-authenticate');
+        } catch (MissingRefreshTokenException $e) {
+            // we need to refresh our authentication token
+            Forrest::refresh();
+
+            // redirect back to the demo this works for now but feels a little hokey
+            // and potentially could result in infinite redirect look into changing
+            return redirect()->route('salesforce-demo');
+        } catch (TokenExpiredException $e) {
+            // we need to refresh our authentication token
+            Forrest::refresh();
+
+            // redirect back to the demo this works for now but feels a little hokey
+            // and potentially could result in infinite redirect look into changing
+            return redirect()->route('salesforce-demo');
         }
     }
 }

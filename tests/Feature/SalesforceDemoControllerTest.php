@@ -2,10 +2,14 @@
 
 namespace Tests\Feature;
 
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\View;
 use Mockery;
 use App\SalesforceContact;
+use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
 use Omniphx\Forrest\Exceptions\MissingTokenException;
+use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -36,9 +40,9 @@ class SalesforceDemoControllerTest extends TestCase
     }
 
     /**
-     * test show with an exception
+     * test show with a missing token exception
      */
-    public function testShowException()
+    public function testShowMissingTokenException()
     {
         // set up our uri to test with
         $uri = route('salesforce-demo', [], false);
@@ -57,6 +61,76 @@ class SalesforceDemoControllerTest extends TestCase
             ->once()
             ->withNoArgs()
             ->andThrow($exception);
+
+        // lets call our uri and get a response
+        $response = $this->get($uri);
+
+        // assert that we did actually get redirected
+        $response->assertRedirect($redirectUri);
+    }
+
+    /**
+     * test show with a token expired exception
+     */
+    public function testShowTokenExpiredException()
+    {
+        // set up our uri to test with
+        $uri = route('salesforce-demo', [], false);
+
+        // set up our uri that we expect to be redirected to
+        $redirectUri = route('salesforce-demo', [], false);
+
+        // set up our exception we're mocking it because it requires more then just a simple message
+        $exception = Mockery::mock('Omniphx\Forrest\Exceptions\TokenExpiredException');
+
+        // swap our apps instance of SalesforceContact with the mock
+        $this->app->instance(SalesforceContact::class, $this->salesforceContactMock);
+
+        // if we have an exception instead of calling view we expect to redirect to authenticate
+        $this->salesforceContactMock->shouldReceive('getContacts')
+            ->once()
+            ->withNoArgs()
+            ->andThrow($exception);
+
+        // forrest should receive a refresh call
+        Forrest::shouldReceive('refresh')
+            ->once()
+            ->withNoArgs();
+
+        // lets call our uri and get a response
+        $response = $this->get($uri);
+
+        // assert that we did actually get redirected
+        $response->assertRedirect($redirectUri);
+    }
+
+    /**
+     * test show with a missing refresh token exception
+     */
+    public function testShowMissingRefreshTokenException()
+    {
+        // set up our uri to test with
+        $uri = route('salesforce-demo', [], false);
+
+        // set up our uri that we expect to be redirected to
+        $redirectUri = route('salesforce-demo', [], false);
+
+        // set up our exception
+        $exception = new MissingRefreshTokenException('test exception');
+
+        // swap our apps instance of SalesforceContact with the mock
+        $this->app->instance(SalesforceContact::class, $this->salesforceContactMock);
+
+        // if we have an exception instead of calling view we expect to redirect to authenticate
+        $this->salesforceContactMock->shouldReceive('getContacts')
+            ->once()
+            ->withNoArgs()
+            ->andThrow($exception);
+
+        // forrest should receive a refresh call
+        Forrest::shouldReceive('refresh')
+            ->once()
+            ->withNoArgs();
 
         // lets call our uri and get a response
         $response = $this->get($uri);
