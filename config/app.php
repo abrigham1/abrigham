@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Omniphx\Forrest\Providers\Laravel\ForrestServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -224,6 +225,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Forrest' => Omniphx\Forrest\Providers\Laravel\Facades\Forrest::class,
     ],
 
 ];

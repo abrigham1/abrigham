@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 /**
- * Class HomeController
+ * Class ThreeDemoController
  * @package App\Http\Controllers
  */
 class ThreeDemoController extends Controller

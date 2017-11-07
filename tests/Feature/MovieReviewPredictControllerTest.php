@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class MovieReviePredictControllerTest extends TestCase
+class MovieReviewPredictControllerTest extends TestCase
 {
 
     /**
@@ -46,6 +46,11 @@ class MovieReviePredictControllerTest extends TestCase
 
     }
 
+    /**
+     * predict data provider
+     *
+     * @return array
+     */
     public function predictProvider()
     {
         return [

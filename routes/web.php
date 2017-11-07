@@ -12,6 +12,17 @@
 */
 Route::get('/', 'HomeController@show')->name('home');
 
+Route::post('/predict-review', 'MovieReviewPredictController@predict')->name('predict-review');
+
 Route::get('/three', 'ThreeDemoController@show')->name('three-demo');
 
-Route::post('/predict-review', 'MovieReviewPredictController@predict')->name('predict-review');
+/**
+ * salesforce demo routes
+ */
+Route::get('/salesforce-demo', 'SalesforceDemoController@show')->name('salesforce-demo');
+
+Route::get('/salesforce/oauth2/authenticate', 'SalesforceDemoController@authenticate')
+    ->name('salesforce-authenticate');
+
+Route::get('/salesforce/oauth2/callback', 'SalesforceDemoController@callback')
+    ->name('salesforce-callback');

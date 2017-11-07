@@ -13,7 +13,8 @@
     "abrigham/laravel-email-exceptions": "^1.0.0",
     "guzzlehttp/guzzle": "^6.2",
     "laravel/framework": "5.5.*",
-    "laravel/tinker": "~1.0"
+    "laravel/tinker": "~1.0",
+    "omniphx/forrest": "2.*"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
@@ -23,7 +24,8 @@
     "fzaninotto/faker": "~1.4",
     "laravel/homestead": "^6",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~6.0"
+    "phpunit/phpunit": "~6.0",
+    "orchestra/testbench": "~3.0"
   },
   "autoload": {
     "classmap": [
