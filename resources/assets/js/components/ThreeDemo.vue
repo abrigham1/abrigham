@@ -6,7 +6,6 @@
         <div id="asciiContainer">
         </div>
     </div>
-
 </template>
 <script>
     export default {

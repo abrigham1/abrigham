@@ -15,5 +15,6 @@
     <p>
         To start please write a movie review and then click submit.
     </p>
-    @include('components.MovieReviewForm')
+    <movie-review-form predict-url="{{ route('predict-review') }}">
+    </movie-review-form>
 @endsection
