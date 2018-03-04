@@ -42,6 +42,6 @@ vagrant up
 ```
 
 While that is running modify your hosts file adding the proper ipaddress and hostname from your 
-Homestead.yaml file (192.168.10.10 abrigham.app).
+Homestead.yaml file (192.168.10.10 abrigham.loc).
 
 Once homestead has booted you should be able to access it locally by navigating to abrigham.app.
