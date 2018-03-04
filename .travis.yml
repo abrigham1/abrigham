@@ -9,9 +9,9 @@ install:
 before_script:
   - cp .env.travis .env
   - composer self-update
-  - composer install --prefer-source --no-interaction
+  - composer install --prefer-source --no-interaction --quiet
   - php artisan key:generate
-  - npm install
+  - npm install --quiet
   - npm run prod
 # run the tests and phpcs
 script:
@@ -35,9 +35,9 @@ jobs:
       script: skip
       before_deploy:
         # install production vendors
-        - composer install --no-dev --optimize-autoloader --no-interaction
+        - composer install --no-dev --optimize-autoloader --no-interaction --quiet
         # install our node dependencies
-        - npm install
+        - npm install --quiet
         # run production assets
         - npm run prod
         # zip up our application in preparation for sending it to s3
@@ -48,9 +48,9 @@ jobs:
         # deploy to s3
         - provider: s3
           skip_cleanup: true
-          access_key_id: AKIAJHWIY4TFZ7L3UVRQ
+          access_key_id: AKIAJUBHSOK262RJXOZQ
           secret_access_key: &1
-            secure: "QoghsnNb49yyiUYSDfLEmvYcqDB8ymaisPKM/q5wmuytlBYG63AUy2ild8fH1zGtZqs4+5EVYVNYK0bj1JCmOU1IoWjK7vx6kX/Zg2CkTZln5OV/b4CrN++0C068+w7bpDlbPVhG9qvEVlfCsgdPlmc6G8305uWxCjfTiBkOXWGXpA4f0+edlPZ9HPh/GhGtk/jt9sEQ9A3LblTj1vqmPZJNMcnHsAWIsNEcqExb+VS5OVedFfKeXrWJ1ia+POzsDe82pESx/lOOxNA9j6NprOm7B7MDjl4ER3R0b3J7wmGYoARrEJLrrvsTeWop9kbEBOfgvhhUhWXo5M8iLj/MBdT7f1pRNLrCQmY3pgeQeRIsnaKkUZDo29/nATMvZ7ooqi5dNvADXrrLnmqDdUbR+WP2hgH68FL5uBB58XC194p02fsKhWOMhR1hzGAB7/5om/20MHm/Vf4a4PR+inKQ1D/U2sj5299RKKCDvKPSxD3Uq6PCBgMmQuoiQdPxAmIyYwjmgUwgjKcG51Je/z7xTeO53vBs4xFXXCXNbz+SQuWONfNPeSwIn8/kYrqkbN5MAXpliRZtBftL/UlkVAlLj72/fNclfwSUS8p9DH5XpeZpvVru/UblBoJRguqL+HSDEtCIMhTNPLSamst7GEHMcIt1v9ds1+x45E4s3N8U5fI="
+            secure: TJHZ3im4N7Wt5vwb3wZYb1cOWX22Edw2Lz3bP7gPd6Awmee2Df5BrWWpQYRgUEFjbhD0GhK4ZiGUg4SiTrt7AgebxqHS/NVzgQK1mqK9A0jCHuQwvXEmFqp5mn2ZzGALFAqB06799/niIS/vVW3bWMbF4/z4MT/gL3FsQQZ80dQF9Pu7jKz6D+HRAfrez3v7agZkVT5AexJKdIAeJsYjwBAYWRoGc27IHNYr+1uP3r5XD5UxC5h4PVzHsLY59PTB7cYbJw5acszYloo4PwYvIuM6w3w0AN++e19SmVPfH1FgfHOkKUcez/Np64Hky1z8cCdYiRFSh1XKsiQojTShBC4hzwGBDSysFB8ip7kxKWdNtxC2NHWXxD0IUpJWqxCM1DnuITNRXvp09L23oiAKRenSYP1tnVP563xAIqp4FOhSsuINNmMcqHzK0OpgivVF5ton/EJGMnCQ/0Sqt7+9hzmofqXtXMwytErN9BJ5GmIClLWnPSwb3NEL6L+yDZw/lEnfkroizOjQSWca1Mw208r9ZWwHEAso2qaglwgjjxfkboYx6x1UVqPw0nZji0jHlYcUJMeSEZNVWQkEWrePFDsoWf03bjBKzDuePcWqzm1PXvYgAl+VFzrcKNdkt7aeRNagkxScc7b2B9OToVncei3BM72sewF3pMC2fCxpWW0=
           local_dir: cd_upload
           # only deploy from master branch
           on: &2
@@ -59,7 +59,7 @@ jobs:
         # deploy from s3 to our ec2 instance(s) using aws codedeploy
         - provider: codedeploy
           skip_cleanup: true
-          access_key_id: AKIAJHWIY4TFZ7L3UVRQ
+          access_key_id: AKIAJUBHSOK262RJXOZQ
           secret_access_key: *1
           bucket: abrigham.com
           key: latest.zip
