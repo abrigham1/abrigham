@@ -9,3 +9,6 @@ export PATH="$HOME/anaconda/bin:$PATH"
 # Refresh .bashrc so we can use the conda command
 source .bashrc
 conda update conda -y
+
+# install nvm and use that to install node/npm
+rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install node

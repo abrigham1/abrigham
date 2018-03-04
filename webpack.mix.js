@@ -19,7 +19,7 @@ mix.autoload({
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([
         'axios',
-        'bootstrap-sass',
+        'bootstrap',
         'jquery',
         'lodash',
         'vue',
