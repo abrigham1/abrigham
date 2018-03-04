@@ -24,17 +24,19 @@ class MovieReviewPredictControllerTest extends TestCase
         $uri = route('predict-review', [], false);
 
         // call the predict route
-        $response = $this->post(
+        $response = $this->withHeaders(
+            [
+                // requested with ajax
+                'X-Requested-With' => 'XMLHttpRequest',
+            ]
+        )->json(
+            'POST',
             $uri,
             [
                 // our csrf token
                 '_token' => csrf_token(),
                 // pass our review in
                 'review' => $review,
-            ],
-            [
-                // requested with ajax
-                'X-Requested-With' => 'XMLHttpRequest'
             ]
         );
 
@@ -96,7 +98,7 @@ class MovieReviewPredictControllerTest extends TestCase
                 // json response
                 [
                     'label' => 'positive',
-                    'probability' => '98.62'
+                    'probability' => '98.62',
                 ],
             ],
         ];
