@@ -41,7 +41,7 @@ jobs:
         # run production assets
         - npm run prod
         # zip up our application in preparation for sending it to s3
-        - zip -r latest *
+        - zip -rq latest *
         - mkdir -p cd_upload
         - mv latest.zip cd_upload/latest.zip
       deploy:
