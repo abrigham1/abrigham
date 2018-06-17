@@ -66,12 +66,7 @@
                 this.showError = false;
 
                 // validate everything to make sure we are clear to submit
-                this.$validator.validateAll().then((result) => {
-
-                    alert('form submitted!');
-                }).catch(() => {
-                    alert('validate shit');
-                });
+                this.$validator.validateAll().then((result) => {}).catch(() => {});
 
                 // if there are errors we cant submit back to the drawing board
                 if (this.errors.any()) {
