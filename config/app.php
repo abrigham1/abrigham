@@ -53,6 +53,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'python_api_url' => env('PYTHON_API_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

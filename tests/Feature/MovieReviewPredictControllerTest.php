@@ -21,7 +21,7 @@ class MovieReviewPredictControllerTest extends TestCase
     public function testPredict($review, $status, $jsonResponse)
     {
         // get our uri using the route helper
-        $uri = route('predict-review', [], false);
+        $uri = route('predict', [], false);
 
         // call the predict route
         $response = $this->withHeaders(
