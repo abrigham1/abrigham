@@ -62,9 +62,6 @@
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-      "@php -r \"file_exists('laradock/.env') || copy('laradock/.env.example', 'laradock/.env');\"",
-      "@php -r \"file_exists('laradock/nginx/sites/abrigham.conf) || copy('laradock/nginx/sites/abrigham.conf.example', 'laradock/nginx/sites/abrigham.conf');\"",
-      "@php -r \"file_exists('laradock/nginx/sites/abrigham.conf) || copy('laradock/nginx/sites/mlapi.conf.example', 'laradock/nginx/sites/mlapi.conf');\""
     ],
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
