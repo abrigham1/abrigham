@@ -7,7 +7,7 @@ This is the codebase that powers abrigham.com
 * [Installation](#installation)
 
 ## Installation
-To run this you must first have composer, php, nodejs/npm, virtualbox and vagrant.
+To run this you must first have composer, php, nodejs/npm, docker.
 
 Download or clone the repo, once done navigate to the main directory in the command line and run the following commands.
 ```bash
@@ -41,7 +41,7 @@ Run the following command to bring your new homestead virtual machine up:
 vagrant up
 ```
 
-While that is running modify your hosts file adding the proper ipaddress and hostname from your 
-Homestead.yaml file (192.168.10.10 abrigham.loc).
+While that is running modify your hosts file adding the proper ipaddress and hostname 
+(127.0.0.1 abrigham.localhost).
 
 Once homestead has booted you should be able to access it locally by navigating to abrigham.app.
