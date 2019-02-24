@@ -11,8 +11,13 @@ To run this you must first have composer, php, nodejs/npm, docker.
 
 Download or clone the repo, once done navigate to the main directory in the command line and run the following commands.
 ```bash
+# copy env files and nginx confs
 ./first_install.sh
+
+# bring up our docker containers
 docker-compose up -d nginx
+
+# generate our encryption key, install composer dependencies, npm dependencies, and compile webpack assets from within workspace container
 docker-compose exec workspace bash -c "php artisan key:generate --ansi && composer install -n && && yarn install && npm run dev"
 ```
 
