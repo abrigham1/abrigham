@@ -14,6 +14,9 @@ Download or clone the repo, once done navigate to the main directory in the comm
 # copy env files and nginx confs
 ./first_install.sh
 
+# switch to laradock directory
+cd laradock
+
 # bring up our docker containers
 docker-compose up -d nginx
 
