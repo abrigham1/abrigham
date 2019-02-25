@@ -24,7 +24,4 @@ docker-compose up -d nginx
 docker-compose exec workspace bash -c "php artisan key:generate --ansi && composer install -n && && yarn install && npm run dev"
 ```
 
-While that is running modify your hosts file adding the proper ipaddress and hostname 
-(127.0.0.1 abrigham.localhost).
-
 Once docker has booted you should be able to access it locally by navigating to abrigham.localhost
