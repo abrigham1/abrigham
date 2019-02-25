@@ -21,7 +21,7 @@ cd laradock
 docker-compose up -d nginx
 
 # generate our encryption key, install composer dependencies, npm dependencies, and compile webpack assets from within workspace container
-docker-compose exec workspace bash -c "php artisan key:generate --ansi && composer install -n && && yarn install && npm run dev"
+docker-compose exec workspace bash -c "composer install -n && yarn install && npm run dev && php artisan key:generate --ansi"
 ```
 
 Once docker has booted you should be able to access it locally by navigating to abrigham.localhost
