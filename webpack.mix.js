@@ -15,7 +15,7 @@ mix.autoload({
     'jquery': ['window.jQuery', 'jQuery', '$']
 });
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js')
     .extract([
         'axios',
         'bootstrap',
@@ -25,7 +25,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'vee-validate',
         'three/build/three.min'
     ]);
-mix.sass('resources/assets/sass/app.scss', 'public/css');
+mix.sass('resources/sass/app.scss', 'public/css');
 
 if (mix.config.inProduction) {
     mix.version();
