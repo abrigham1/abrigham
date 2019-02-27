@@ -15,7 +15,7 @@ before_install:
 install:
   - ./first_install.sh
   - cd laradock
-  - docker-compose up -f production-docker-compose.yml --build -d
+  - docker-compose -f production-docker-compose.yml up --build -d
   - docker-compose ps
   - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run prod"
 
