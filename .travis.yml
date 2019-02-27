@@ -1,5 +1,4 @@
 language: php
-sudo: required
 services:
   - docker
 
@@ -12,18 +11,18 @@ before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 
-#
+# install dependencies
 install:
   - ./first_install.sh
   - cd laradock
-  - docker-compose up --build -d nginx
-  - docker-compose exec --user=laradock workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run prod"
+  - docker-compose up -f production-docker-compose.yml --build -d
   - docker-compose ps
+  - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run prod"
 
 # run the tests and phpcs
 script:
-  - docker-compose exec --user=laradock workspace bash -c "vendor/bin/phpunit"
-  - docker-compose exec --user=laradock workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
+  - docker-compose exec workspace bash -c "vendor/bin/phpunit"
+  - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # no emails please
 notifications:
   email: false
