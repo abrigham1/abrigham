@@ -7,9 +7,14 @@ This is the codebase that powers abrigham.com
 * [Installation](#installation)
 
 ## Installation
-To run this you must first have composer, php, nodejs/npm, docker.
+To run this you must first have git and docker installed.
 
-Download or clone the repo, once done navigate to the main directory in the command line and run the following commands.
+Clone the repo including the laradock submodule
+```bash
+git clone --recursive git@github.com:abrigham1/abrigham.git
+```
+
+Once done navigate to the main directory in the command line and run the following commands.
 ```bash
 # copy env files and nginx confs
 ./first_install.sh

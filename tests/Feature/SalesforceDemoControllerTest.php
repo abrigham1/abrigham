@@ -9,12 +9,17 @@ use App\SalesforceContact;
 use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
 use Omniphx\Forrest\Exceptions\MissingTokenException;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
-
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+/**
+ * Tests for the salesforce demo controller
+ *
+ * Class SalesforceDemoControllerTest
+ * @package Tests\Feature
+ */
 class SalesforceDemoControllerTest extends TestCase
 {
     /**
