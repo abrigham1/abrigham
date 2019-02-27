@@ -4,6 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+/**
+ * Only allow ajax requests
+ *
+ * Class AjaxOnly
+ * @package App\Http\Middleware
+ */
 class AjaxOnly
 {
     /**

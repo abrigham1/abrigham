@@ -4,8 +4,15 @@ namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as BaseTrimmer;
 
+/**
+ * Trim strings middleware
+ *
+ * Class TrimStrings
+ * @package App\Http\Middleware
+ */
 class TrimStrings extends BaseTrimmer
 {
+
     /**
      * The names of the attributes that should not be trimmed.
      *

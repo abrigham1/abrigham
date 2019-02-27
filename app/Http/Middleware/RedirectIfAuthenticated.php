@@ -5,6 +5,12 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Redirect if authenticated
+ *
+ * Class RedirectIfAuthenticated
+ * @package App\Http\Middleware
+ */
 class RedirectIfAuthenticated
 {
     /**
