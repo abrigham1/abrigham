@@ -1,4 +1,5 @@
-language: php
+# setting language to generic because we dont need php installed (everything is inside docker)
+language: generic
 services:
   - docker
 
@@ -15,9 +16,9 @@ before_install:
 install:
   - ./first_install.sh
   - cd laradock
-  - docker-compose -f production-docker-compose.yml up --build -d
+  - docker-compose up --build -d workspace
   - docker-compose ps
-  - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run prod"
+  - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run dev"
 
 # run the tests and phpcs
 script:

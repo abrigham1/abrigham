@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2700351cb86217960ec4521fad9f9c5",
+    "content-hash": "788a5adff7d5964ceba4ab79d332f273",
     "packages": [
         {
             "name": "abrigham/laravel-email-exceptions",

@@ -14,6 +14,11 @@ Clone the repo including the laradock submodule
 git clone --recursive git@github.com:abrigham1/abrigham.git
 ```
 
+Update your hosts file with the following entry
+```bash
+127.0.0.1 abrigham.test mlapi.abrigham.test
+```
+
 Once done navigate to the main directory in the command line and run the following commands.
 ```bash
 # copy env files and nginx confs
