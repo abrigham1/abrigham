@@ -24,6 +24,7 @@ install:
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
+
 # no emails please
 notifications:
   email: false
