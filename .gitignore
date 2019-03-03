@@ -14,3 +14,10 @@ _ide_helper.php
 public/mix-manifest.json
 /MovieReviewClassifier/.idea/
 /DeployScripts/*
+.env.*
+!.env.example
+Dockerrun.aws.json
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

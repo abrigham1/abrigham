@@ -15,6 +15,7 @@ mix.autoload({
     'jquery': ['window.jQuery', 'jQuery', '$']
 });
 
+// js assets
 mix.js('resources/js/app.js', 'public/js')
     .extract([
         'axios',
@@ -25,10 +26,14 @@ mix.js('resources/js/app.js', 'public/js')
         'vee-validate',
         'three/build/three.min'
     ]);
+
+// sass assets
 mix.sass('resources/sass/app.scss', 'public/css');
 
-if (mix.config.inProduction) {
+// add sourcemaps for debugging
+mix.sourceMaps();
+
+// if we're compiling production lets also version the files
+if (mix.inProduction()) {
     mix.version();
-} else {
-    mix.sourceMaps();
 }
