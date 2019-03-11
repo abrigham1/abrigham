@@ -16,7 +16,6 @@ public/mix-manifest.json
 /DeployScripts/*
 .env.*
 !.env.example
-Dockerrun.aws.json
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
