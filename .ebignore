@@ -9,7 +9,6 @@ npm-debug.log
 .env
 .phpstorm.meta.php
 _ide_helper.php
-public/mix-manifest.json
 /MovieReviewClassifier/.idea/
 .env.*
 !.env.example
