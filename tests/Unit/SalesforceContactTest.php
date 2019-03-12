@@ -8,6 +8,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 
+/**
+ * Test salesforce contact model
+ *
+ * Class SalesforceContactTest
+ * @package Tests\Unit
+ */
 class SalesforceContactTest extends TestCase
 {
 

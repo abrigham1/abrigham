@@ -1,5 +1,4 @@
-const { mix } = require('laravel-mix');
-
+const mix = require('laravel-mix');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -16,7 +15,8 @@ mix.autoload({
     'jquery': ['window.jQuery', 'jQuery', '$']
 });
 
-mix.js('resources/assets/js/app.js', 'public/js')
+// js assets
+mix.js('resources/js/app.js', 'public/js')
     .extract([
         'axios',
         'bootstrap',
@@ -26,10 +26,14 @@ mix.js('resources/assets/js/app.js', 'public/js')
         'vee-validate',
         'three/build/three.min'
     ]);
-mix.sass('resources/assets/sass/app.scss', 'public/css');
 
-if (mix.config.inProduction) {
+// sass assets
+mix.sass('resources/sass/app.scss', 'public/css');
+
+// add sourcemaps for debugging
+mix.sourceMaps();
+
+// if we're compiling production lets also version the files
+if (mix.inProduction()) {
     mix.version();
-} else {
-    mix.sourceMaps();
 }

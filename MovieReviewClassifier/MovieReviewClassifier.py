@@ -14,7 +14,7 @@ tfidf = TfidfVectorizer(strip_accents=None,
                         lowercase=False)
 
 # initialize our logistic regression classifier
-lr = LogisticRegression(random_state=0)
+lr = LogisticRegression(solver='liblinear', random_state=0)
 
 # set up our param grid for so we can tune our hyperparameters
 # (specifically here we are tuning ngram_range, penalty, and C)

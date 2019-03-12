@@ -15,6 +15,6 @@
     <p>
         To start please write a movie review and then click submit.
     </p>
-    <movie-review-form predict-url="{{ route('predict-review') }}">
+    <movie-review-form predict-url="{{ Config::get('app.python_api_url') . '/predict' }}">
     </movie-review-form>
 @endsection

@@ -1,0 +1,72 @@
+// Body
+$body-bg:       #D5D5D5;
+$header-bg:     #6D7993;
+$footer-bg:     #9099A2;
+
+// Borders
+$laravel-border-color:         darken($body-bg, 10%);
+$list-group-border:            $laravel-border-color;
+$panel-default-border:         $laravel-border-color;
+$panel-inner-border:           $laravel-border-color;
+
+// Brands
+$brand-primary:         #3097D1;
+$brand-info:            #8eb4cb;
+$brand-success:         #2ab27b;
+$brand-warning:         #cbb956;
+$brand-danger:          #bf5329;
+
+// Typography
+$icon-font-path:                 "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif:         'Roboto', sans-serif;
+$font-family-robot:              'Orbitron', sans-serif;
+$font-size-base:                 0.9rem;
+$line-height-base:               1.6;
+$text-color:                     #636b6f;
+
+// Basics of a navbar
+$navbar-height:                    50px !default;
+$navbar-margin-bottom:             0 !default;
+$navbar-border-radius:             0 !default;
+
+$navbar-default-color:             #ffffff !default;
+$navbar-default-bg:                $header-bg !default;
+$navbar-default-border:            transparent !default;
+
+// Navbar links
+$navbar-default-link-color:                #ffffff !default;
+$navbar-default-link-hover-color:          darken($navbar-default-link-color, 10%) !default;
+$navbar-default-link-hover-bg:             transparent !default;
+$navbar-default-link-active-color:         darken($navbar-default-link-color, 10%) !default;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-disabled-color:       #cccccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+// Footer
+$footer-link-color:               $navbar-default-link-color !default;
+$footer-link-hover-color:         darken($footer-link-color, 10%) !default;
+$footer-text-color:               #D3D3D3 !default;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color !default;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%) !default;
+$navbar-default-brand-hover-bg:            transparent !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #dddddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888888 !default;
+$navbar-default-toggle-border-color:       #dddddd !default;
+
+// Buttons
+$btn-default-color:       $text-color;
+
+// Inputs
+$input-border:                lighten($text-color, 40%);
+$input-border-focus:          lighten($brand-primary, 25%);
+$input-color-placeholder:     lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg:       #ffffff;
+
+// Sliding underline
+$sliding-underline-height: 2px;

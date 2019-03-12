@@ -1,0 +1,83 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "sourceCode",
+      "host": {
+        "sourcePath": "/var/app/current"
+      }
+    },
+    {
+      "name": "php-ini",
+      "host": {
+        "sourcePath": "/var/app/current/laradock/php-fpm/php7.2.ini"
+      }
+    },
+    {
+      "name": "nginx-sites",
+      "host": {
+        "sourcePath": "/var/app/current/laradock/nginx/sites/"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "php-fpm",
+      "image": "620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest",
+      "essential": true,
+      "memory": 256,
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "sourceCode"
+        },
+        {
+          "containerPath": "/usr/local/etc/php/php.ini",
+          "sourceVolume": "php-ini"
+        },
+        {
+          "containerPath": "/usr/local/var/log",
+          "sourceVolume": "awseb-logs-php-fpm"
+        }
+      ]
+    },
+    {
+      "name": "anaconda",
+      "image": "620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest",
+      "essential": true,
+      "memory": 256,
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "sourceCode"
+        }
+      ]
+    },
+    {
+      "name": "nginx",
+      "image": "620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "php-fpm",
+        "anaconda"
+      ],
+      "mountPoints": [
+        {
+          "containerPath": "/var/www",
+          "sourceVolume": "sourceCode"
+        },
+        {
+          "containerPath": "/var/log/nginx",
+          "sourceVolume": "awseb-logs-nginx"
+        }
+      ]
+    }
+  ]
+}

@@ -7,18 +7,24 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+/**
+ * tests for the home controller
+ *
+ * Class HomeControllerTest
+ * @package Tests\Feature
+ */
 class HomeControllerTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
-     * @return void
+     * test homepage
      */
     public function testHomepage()
     {
         $uri = route('home', [], false);
         $response = $this->get($uri);
 
-        $response->assertStatus(200);
+        // make our assertions
+        $response->assertOk()
+            ->assertSeeText("Machine Learning with Scikit Learn");
     }
 }

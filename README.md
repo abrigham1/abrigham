@@ -7,41 +7,31 @@ This is the codebase that powers abrigham.com
 * [Installation](#installation)
 
 ## Installation
-To run this you must first have composer, php, nodejs/npm, virtualbox and vagrant.
+To run this you must first have git and docker installed.
 
-Download or clone the repo, once done navigate to the main directory in the command line and run the following commands.
+Clone the repo including the laradock submodule
 ```bash
-composer install
-npm install
-npm run dev
+git clone --recursive git@github.com:abrigham1/abrigham.git
 ```
 
-Next you'll need an environment file so copy .env.example to .env using your preferred method.
-
-This will install all your dependencies and get your assets up to date
-
-Once you've done that you'll want to get a [Laravel Homstead](https://laravel.com/docs/5.4/homestead#per-project-installation) box up and running
-
-To do so run the following command
-
-Mac/Linux:
+Update your hosts file with the following entry
 ```bash
-php vendor/bin/homestead make
+127.0.0.1 abrigham.test mlapi.abrigham.test
 ```
 
-Windows:
+Once done navigate to the main directory in the command line and run the following commands.
 ```bash
-vendor\\bin\\homestead make
+# copy env files
+./first_install.sh
+
+# switch to laradock directory
+cd laradock
+
+# bring up our docker containers
+docker-compose up -d nginx
+
+# install composer dependencies, npm dependencies, compile assets, generate encryption key
+docker-compose exec --user=laradock workspace bash -c "composer install -n && npm install && npm run dev && php artisan key:generate --ansi"
 ```
 
-Once you've done that you can check the Homestead.yaml file it created to make sure it looks correct.
-
-Run the following command to bring your new homestead virtual machine up:
-```bash
-vagrant up
-```
-
-While that is running modify your hosts file adding the proper ipaddress and hostname from your 
-Homestead.yaml file (192.168.10.10 abrigham.loc).
-
-Once homestead has booted you should be able to access it locally by navigating to abrigham.app.
+Once docker has booted you should be able to access it locally by navigating to abrigham.test
