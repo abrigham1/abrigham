@@ -59,8 +59,7 @@
       "essential": true,
       "memory": 256,
       "links": [
-        "php-fpm",
-        "anaconda"
+        "php-fpm anaconda"
       ],
       "mountPoints": [
         {
