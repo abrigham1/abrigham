@@ -16,7 +16,13 @@
     {
       "name": "nginx-sites",
       "host": {
-        "sourcePath": "/var/app/current/laradock/nginx/sites/"
+        "sourcePath": "/var/app/current/laradock/nginx/sites"
+      }
+    },
+    {
+      "name": "nginx-ssl",
+      "host": {
+        "sourcePath": "/var/app/current/laradock/ssl"
       }
     }
   ],
@@ -72,6 +78,14 @@
         {
           "containerPath": "/var/www",
           "sourceVolume": "sourceCode"
+        },
+        {
+          "containerPath": "/etc/nginx/sites-available",
+          "sourceVolume": "nginx-sites"
+        },
+        {
+          "containerPath": "/etc/nginx/ssl",
+          "sourceVolume": "nginx-ssl"
         },
         {
           "containerPath": "/var/log/nginx",
