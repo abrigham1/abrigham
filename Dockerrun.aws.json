@@ -16,7 +16,7 @@
     {
       "name": "nginx-sites",
       "host": {
-        "sourcePath": "/var/app/current/laradock/nginx/sites"
+        "sourcePath": "/var/app/current/laradock/nginx/sites/"
       }
     }
   ],
@@ -58,8 +58,15 @@
       "image": "620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest",
       "essential": true,
       "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
       "links": [
-        "php-fpm anaconda"
+        "php-fpm",
+        "anaconda"
       ],
       "mountPoints": [
         {
@@ -67,18 +74,8 @@
           "sourceVolume": "sourceCode"
         },
         {
-          "containerPath": "/etc/nginx/sites-available",
-          "sourceVolume": "nginx-sites"
-        },
-        {
           "containerPath": "/var/log/nginx",
           "sourceVolume": "awseb-logs-nginx"
-        }
-      ],
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80
         }
       ]
     }
