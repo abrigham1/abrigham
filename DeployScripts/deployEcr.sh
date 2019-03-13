@@ -3,12 +3,6 @@
 # ecr repo url
 ecrRepoUrl="620139381534.dkr.ecr.us-east-1.amazonaws.com/"
 
-# switch to deploy scripts dir
-#cd `dirname "$(readlink -f "$0")"`
-
-# put the app in production mode
-#./enterProductionMode.sh
-
 # switch to laradock directory to  build docker images
 cd `dirname "$(readlink -f "$0")"`/../laradock
 
@@ -31,10 +25,4 @@ docker push ${ecrRepoUrl}abrigham/php-fpm:latest
 docker push ${ecrRepoUrl}abrigham/workspace:latest
 docker push ${ecrRepoUrl}abrigham/docker-in-docker:latest
 docker push ${ecrRepoUrl}abrigham/anaconda:latest
-
-#switch to deploy scripts dir
-#cd `dirname "$(readlink -f "$0")"`
-
-# put the app in production mode
-#./enterDevMode.sh
 
