@@ -14,7 +14,3 @@ docker-compose stop
 
 # switch to project base directory
 cd `dirname "$(readlink -f "$0")"`/../
-
-# swap to local env
-mv .env .env.production
-mv .env.local .env
