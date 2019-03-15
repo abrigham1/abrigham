@@ -7,13 +7,11 @@ ecrRepoUrl="620139381534.dkr.ecr.us-east-1.amazonaws.com/"
 cd `dirname "$(readlink -f "$0")"`/../laradock
 
 # build our containers
-docker-compose build nginx php-fpm workspace docker-in-docker anaconda
+docker-compose build nginx php-fpm anaconda
 
 # tag docker images
 docker tag laradock_nginx:latest ${ecrRepoUrl}abrigham/nginx:latest
 docker tag laradock_php-fpm:latest ${ecrRepoUrl}abrigham/php-fpm:latest
-docker tag laradock_workspace:latest ${ecrRepoUrl}abrigham/workspace:latest
-docker tag docker:dind ${ecrRepoUrl}abrigham/docker-in-docker:latest
 docker tag laradock_anaconda:latest ${ecrRepoUrl}abrigham/anaconda:latest
 
 # run docker login command for ecr
@@ -22,7 +20,5 @@ eval $(aws ecr get-login --no-include-email)
 # push docker images to ecr
 docker push ${ecrRepoUrl}abrigham/nginx:latest
 docker push ${ecrRepoUrl}abrigham/php-fpm:latest
-docker push ${ecrRepoUrl}abrigham/workspace:latest
-docker push ${ecrRepoUrl}abrigham/docker-in-docker:latest
 docker push ${ecrRepoUrl}abrigham/anaconda:latest
 
