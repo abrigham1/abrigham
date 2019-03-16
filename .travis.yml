@@ -27,10 +27,14 @@ before_deploy:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
   - bash DeployScripts/deployEcr.sh
+  - rm -rf vendor
+  - rm -rf node_modules
   - bash DeployScripts/enterProductionMode.sh
 deploy:
   skip_cleanup: true
   provider: elasticbeanstalk
+  edge:
+    branch: ebignore
   access_key_id: AKIAISRORPJDMM4YP3VQ
   secret_access_key:
     secure: Oc+/twFRTJXKDBRm+LA3Nsr/0hsxw6klFRNazuFyue58sQr7UHyGwNIPa+WUuwX50J8+U8FY8gt/07ontVl7M1w8A2UBAjU3gToSFvtrEbSP09Whxya5VUpFuFLMC69qiSAJHlkJLQjdiiYz6FRxVsyvdKmVhO+r2sU0yNk9u+1FhK3RO7GMvYZVbSZJrfu7jemQ0WoC03OF3H6QgQNZ9zE4D01f63p2KS+LIhNfQepULghY516/eqlyy4HuajBOXM3bppyjzw/kZ0DhFww8imkHy8tgCN9QkxWOSdBUXSG0WXPFRTFMbaIgw1oerUF127rDxK0/CXcWYi1FOTwwsqojqz8Lvr1pkvRsWfjfT4GN5DyE9OIV1A78IbJ4gDszFJaBvolgsKqiJaNiiKXBrAa6Ben/ePk2TXRpTTjfKRaYlvBpMJygi5NMo7tGDA/hu0UDiBp9/L1ngXTWSKgVglkREqee7lBpUTnDuWIgQd5nNO5hsDgkyiQeWMfVq12j2MuNilK3ygDb751XyVca2UxW+qaHY5PnoF6LUqBWhNcAPoWIh/sHPAkek0L6mS6vVn0c7Y/qPZ/HumW/ZLV+d3T/PnkEERrMikCjAl0E/O90tIOZCGt1XoGhl0tqDCxRYkD3ujmceOSUDL5leSMRTZpsrSOieLZ/yKaRDkrf1Mo=
