@@ -15,7 +15,7 @@ docker tag laradock_php-fpm:latest ${ecrRepoUrl}abrigham/php-fpm:latest
 docker tag laradock_anaconda:latest ${ecrRepoUrl}abrigham/anaconda:latest
 
 # run docker login command for ecr
-eval $(aws ecr get-login --no-include-email)
+eval $(aws ecr get-login --no-include-email --region us-east-1)
 
 # push docker images to ecr
 docker push ${ecrRepoUrl}abrigham/nginx:latest
