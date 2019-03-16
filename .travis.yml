@@ -23,6 +23,7 @@ script:
 notifications:
   email: false
 before_deploy:
+  - cd ../
   - bash DeployScripts/deployEcr.sh
   - bash DeployScripts/enterProductionMode.sh
 deploy:
