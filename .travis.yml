@@ -37,5 +37,6 @@ deploy:
   region: us-east-1
   app: abrigham
   env: abrigham-prod
+  bucket_name: elasticbeanstalk-us-east-1-620139381534
   on:
     branch: master
