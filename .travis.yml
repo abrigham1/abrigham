@@ -24,6 +24,8 @@ notifications:
   email: false
 before_deploy:
   - cd ../
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
   - bash DeployScripts/deployEcr.sh
   - bash DeployScripts/enterProductionMode.sh
 deploy:
