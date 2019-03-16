@@ -14,8 +14,7 @@ install:
   - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction
     --quiet && php artisan key:generate --ansi && npm install --quiet && npm run dev"
 script:
-  - mkdir -p ../build/logs
-  - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
+  - docker-compose exec workspace bash -c "mkdir -p build/logs && vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 after_success:
   - travis_retry docker-compose exec workspace bash -c "vendor/bin/php-coveralls"
