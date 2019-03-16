@@ -11,7 +11,7 @@ before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 install:
-  - "./first_install.sh"
+  - bash first_install.sh
   - cd laradock
   - docker-compose up --build -d workspace
   - docker-compose ps
@@ -23,8 +23,8 @@ script:
 notifications:
   email: false
 before_deploy:
-  - "./DeployScripts/deployEcr.sh"
-  - "./DeployScripts/enterProductionMode.sh"
+  - bash DeployScripts/deployEcr.sh
+  - bash DeployScripts/enterProductionMode.sh
 deploy:
   skip_cleanup: true
   provider: elasticbeanstalk
