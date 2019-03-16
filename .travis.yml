@@ -1,11 +1,17 @@
+# setting to generic cause we're using docker so we don't
+# need them to install anything for us
 language: generic
+# need docker added since everything is based off it
 services:
   - docker
+# don't install submodules we're doing it manually since it wasn't working correctly
 git:
   submodules: false
+# install our laradock submodule
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+# install all our dependencies
 install:
   - bash first_install.sh
   - cd laradock
@@ -13,11 +19,13 @@ install:
   - docker-compose ps
   - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction
     --quiet && php artisan key:generate --ansi && npm install --quiet && npm run dev"
+# run phpunit and phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
+# upload coverage report to coveralls.io
 after_success:
-  - chmod 755 ../build/logs/clover.xml
   - docker-compose exec workspace bash -c "vendor/bin/php-coveralls"
+# no email notifications please
 notifications:
   email: false
