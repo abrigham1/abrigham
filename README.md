@@ -31,7 +31,7 @@ cd laradock
 docker-compose up -d nginx
 
 # install composer dependencies, npm dependencies, compile assets, generate encryption key
-docker-compose exec --user=laradock workspace bash -c "composer install -n && npm install && npm run dev && php artisan key:generate --ansi"
+docker-compose exec --user=laradock workspace bash -c "composer install -n && php artisan key:generate --ansi && npm install && npm run dev"
 ```
 
 Once docker has booted you should be able to access it locally by navigating to abrigham.test
