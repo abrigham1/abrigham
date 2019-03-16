@@ -1,30 +1,38 @@
-# setting language to generic because we dont need php installed (everything is inside docker)
 language: generic
+env:
+  global:
+    - secure: WUsnUJmncHQdGRO3YPtRKs1MHehIZ9jDKN2yzqqGLtXXdJnCExKxXNcBp+o4GYMplQ22jha/jlEzzsMtxHRygDCJ1c3gTdryxzKhXt3Yr6qLHnEZl1tw8nGrWD0wfI+NC2D33G9Dv8ZNukF/ZPjJrch6tTU566uihqCYefhpIQQFBDQv3AuGq1xpHJWP3a+tOtiNZgQsehXtezxOBPnwnZ2/Fc0cdFXRRTB6ed2Rqut+MKMN3A2EuGMFlevmF1D2B7SZujL6qyEpqadnSQLh5U7eUyCsF/PLqY+vvxr4ZvciPvF8h1C+ReiS7hWeckPpfzv5k21O0lj0Tc827fUN1rHpLsbJ3oWIu5AcyOAb93Iu6EmomZgm65CHB7McyAuBMJhRNJxUmDbos2BKZH1SUoUEdvOu8ZbU9vrMhlGd12PPXgrbaMUlG43Uuku7WYvGBaCfw5jgxIj+HzZDo2WZ+yqVHHCRh1S/psQOYHTBDo5JEizDO9pwxDhcd0aocECjrBkSDEoYmMasxJ9rkmhHP3hIkF2AMzXl9pvlVF1/LSjUFiogqpY7ubOe99ZiXfxBcwqFSetZ4ipaecqJtITOe+HzYSdBsvTtKZkYCZJYUyw5A6JIuzCluxsMVBKhX4rbTmASSCtB2uLoYW6Uu7h9NAGfWdQ7CdIZLVPq36lKxis=
+    - secure: pW7QoHVMK1CiBRz4CwBlV6fdt9uTVthtzKnS3+PPnZL7gqBCUHRbQf3BKoyzlR+JRIKjr78Kr6wpOZ1cQh0+HPShd8cMQbXWibtSSaiNF8DFTpSHa2eBMRCbQX3qn2lKr0VcbYg+fqcoQGZXgRkTpczp2njN5dhLF5gCEPr/QYVlcCoD5MLWAqrbnMWS+YJ2qcv6eOcB7THxnGqV64A5S5Udqp7FjxoAntd3zTU+n6l5detLZl86DVLCkSIQiezCAWoRDJZsqQH4lA0dgIX02ls4yiWbfahcbJcaU3krwMU6zL6n9cEOj9qy4OumGOGN580WHCPt6wolZB3dCu14x6MMkRvcZPSuN/rmD3dHwQfc9hTyvWgpHYrGl4GDjYnPNU7LhbH+l7LIbH7G6OciX00CJdWGec8DlaQFEOgXdYV30/dtFTnviatFQ2ToB6Pdu5Tbk98vle412NdWCjMzDdpHRxGDj3Rrk9VbncOXjT3WAE31GsKPDqF59PLyIZI0WNLybttUeQ2V6hWtLLN1XDJ+X8hvBk474wsHlSlxdi2fR21XsFRazJIb0r9yqYmvSgZbJslx2PZA2Eb04LPeMDL6lBYhR2E/yaXp6J+t3rJLSR9D8As3QjRfiStPLNZS+BtXolYqf++45zwKxGFrUegcaL3vmk8al1odvFXQJyE=
 services:
   - docker
-
-# don't build submodules automatically
 git:
   submodules: false
-
-# Use sed to replace the SSH URL with the public URL, then initialize submodules
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-
-# install dependencies
 install:
-  - ./first_install.sh
+  - "./first_install.sh"
   - cd laradock
   - docker-compose up --build -d workspace
   - docker-compose ps
-  - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction --quiet && php artisan key:generate --ansi && npm install --quiet && npm run dev"
-
-# run the tests and phpcs
+  - docker-compose exec workspace bash -c "composer install --prefer-source --no-interaction
+    --quiet && php artisan key:generate --ansi && npm install --quiet && npm run dev"
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
-
-# no emails please
 notifications:
   email: false
+before_deploy:
+  - "./DeployScripts/deployEcr.sh"
+  - "./DeployScripts/enterProductionMode.sh"
+deploy:
+  skip_cleanup: true
+  provider: elasticbeanstalk
+  access_key_id: AKIAISRORPJDMM4YP3VQ
+  secret_access_key:
+    secure: Oc+/twFRTJXKDBRm+LA3Nsr/0hsxw6klFRNazuFyue58sQr7UHyGwNIPa+WUuwX50J8+U8FY8gt/07ontVl7M1w8A2UBAjU3gToSFvtrEbSP09Whxya5VUpFuFLMC69qiSAJHlkJLQjdiiYz6FRxVsyvdKmVhO+r2sU0yNk9u+1FhK3RO7GMvYZVbSZJrfu7jemQ0WoC03OF3H6QgQNZ9zE4D01f63p2KS+LIhNfQepULghY516/eqlyy4HuajBOXM3bppyjzw/kZ0DhFww8imkHy8tgCN9QkxWOSdBUXSG0WXPFRTFMbaIgw1oerUF127rDxK0/CXcWYi1FOTwwsqojqz8Lvr1pkvRsWfjfT4GN5DyE9OIV1A78IbJ4gDszFJaBvolgsKqiJaNiiKXBrAa6Ben/ePk2TXRpTTjfKRaYlvBpMJygi5NMo7tGDA/hu0UDiBp9/L1ngXTWSKgVglkREqee7lBpUTnDuWIgQd5nNO5hsDgkyiQeWMfVq12j2MuNilK3ygDb751XyVca2UxW+qaHY5PnoF6LUqBWhNcAPoWIh/sHPAkek0L6mS6vVn0c7Y/qPZ/HumW/ZLV+d3T/PnkEERrMikCjAl0E/O90tIOZCGt1XoGhl0tqDCxRYkD3ujmceOSUDL5leSMRTZpsrSOieLZ/yKaRDkrf1Mo=
+  region: us-east-1
+  app: abrigham
+  env: abrigham-prod
+  on:
+    branch: master
