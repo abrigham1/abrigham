@@ -6,6 +6,13 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Abrigham\LaravelEmailExceptions\Exceptions\EmailHandler as ExceptionHandler;
 
+/**
+ * Exception handler
+ *
+ * Class Handler
+ * @package App\Exceptions
+ * @codeCoverageIgnore 
+ */
 class Handler extends ExceptionHandler
 {
     /**

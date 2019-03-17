@@ -1,5 +1,6 @@
 # abrigham.com
 [![Build Status](https://travis-ci.org/abrigham1/abrigham.svg?branch=master)](https://travis-ci.org/abrigham1/abrigham)
+[![Coverage Status](https://coveralls.io/repos/github/abrigham1/abrigham/badge.svg?branch=master)](https://coveralls.io/github/abrigham1/abrigham?branch=master)
 
 This is the codebase that powers abrigham.com
 
