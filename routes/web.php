@@ -10,14 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@show')->name('home');
+Route::get('/', 'HomeController@show')
+    ->name('home');
 
-Route::get('/three', 'ThreeDemoController@show')->name('three-demo');
+Route::get('/three', 'ThreeDemoController@show')
+    ->name('three-demo');
 
 /**
  * salesforce demo routes
  */
-Route::get('/salesforce-demo', 'SalesforceDemoController@show')->name('salesforce-demo');
+Route::get('/salesforce-demo', 'SalesforceDemoController@show')
+    ->name('salesforce-demo');
 
 Route::get('/salesforce/oauth2/authenticate', 'SalesforceDemoController@authenticate')
     ->name('salesforce-authenticate');

@@ -21,4 +21,3 @@ eval $(aws ecr get-login --no-include-email --region us-east-1)
 docker push ${ecrRepoUrl}abrigham/nginx:latest
 docker push ${ecrRepoUrl}abrigham/php-fpm:latest
 docker push ${ecrRepoUrl}abrigham/anaconda:latest
-

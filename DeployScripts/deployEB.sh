@@ -15,6 +15,5 @@ eb deploy
 #switch to deploy scripts dir
 cd `dirname "$(readlink -f "$0")"`
 
-# put the app in production mode
+# put the app in dev mode
 ./enterDevMode.sh
-

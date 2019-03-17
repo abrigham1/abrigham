@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Redirect if authenticated
+ * Redirect the request if authenticated
  *
  * Class RedirectIfAuthenticated
  * @package App\Http\Middleware
@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect()->route('home');
         }
 
         return $next($request);
