@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\Config;
 use Mockery;
 use App\SalesforceContact;
 use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
@@ -184,6 +185,10 @@ class SalesforceDemoControllerTest extends TestCase
     {
         $uri = route('salesforce-authenticate', [], false);
 
+        // set up a fake callback url
+        Config::set('forrest.credentials.loginURL', 'https://fake-salesforce-login.test');
+        $expected = Config::get('forrest.credentials.loginURL');
+
         // call our uri and get a response
         $response = $this->get($uri);
         $this->assertTrue(
@@ -191,9 +196,10 @@ class SalesforceDemoControllerTest extends TestCase
             'Salesforce authenticate expected to return redirect but does not'
         );
 
-        $expected = env('SALESFORCE_LOGIN_URL');
-        $actual = substr($response->headers->get('Location'), 0, 27);
-        $message = 'Expected redirect to start with' . $expected . ' but it actually starts with' . $actual;
+        // get our actual redirect location
+        $actual = substr($response->headers->get('Location'), 0, 34);
+        $message = 'Expected redirect to start with ' . $expected . ' but it actually starts with ' . $actual;
+        // make our assertion
         $this->assertEquals(
             $expected,
             $actual,
@@ -201,6 +207,9 @@ class SalesforceDemoControllerTest extends TestCase
         );
     }
 
+    /**
+     * test salesforce callback
+     */
     public function testCallback()
     {
         $uri = route('salesforce-callback', [], false);
