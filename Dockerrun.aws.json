@@ -10,7 +10,7 @@
     {
       "name": "php-ini",
       "host": {
-        "sourcePath": "/var/app/current/laradock/php-fpm/php7.2.ini"
+        "sourcePath": "/var/app/current/laradock/php-fpm/php7.3.ini"
       }
     },
     {
