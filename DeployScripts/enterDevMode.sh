@@ -4,4 +4,4 @@
 cd `dirname "$(readlink -f "$0")"`/../laradock/
 
 # install local
-docker-compose run -u laradock workspace bash -c "composer install --no-interaction --quiet && npm install --quiet && npm run dev && php artisan clear-compiled && php artisan route:clear && php artisan config:clear && php artisan cache:clear && php artisan view:clear"
+docker-compose run -u laradock workspace bash -c "composer install --no-interaction --no-progress --no-suggest && npm install --quiet && npm run dev && php artisan clear-compiled && php artisan route:clear && php artisan config:clear && php artisan cache:clear && php artisan view:clear"
