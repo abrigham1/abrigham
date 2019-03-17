@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+/**
+ * Registration controller
+ *
+ * Class RegisterController
+ * @package App\Http\Controllers\Auth
+ * @codeCoverageIgnore
+ */
 class RegisterController extends Controller
 {
     /*
@@ -28,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

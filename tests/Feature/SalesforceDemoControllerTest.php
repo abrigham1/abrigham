@@ -2,17 +2,12 @@
 
 namespace Tests\Feature;
 
-use GuzzleHttp\Exception\RequestException;
-use Illuminate\Support\Facades\View;
 use Mockery;
 use App\SalesforceContact;
 use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
 use Omniphx\Forrest\Exceptions\MissingTokenException;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
  * Tests for the salesforce demo controller
@@ -180,5 +175,45 @@ class SalesforceDemoControllerTest extends TestCase
                 'contacts' => $contacts['records'],
             ]
         );
+    }
+
+    /**
+     * Test the authenticate method
+     */
+    public function testAuthenticate()
+    {
+        $uri = route('salesforce-authenticate', [], false);
+
+        // call our uri and get a response
+        $response = $this->get($uri);
+        $this->assertTrue(
+            $response->isRedirect(),
+            'Salesforce authenticate expected to return redirect but does not'
+        );
+
+        $expected = env('SALESFORCE_LOGIN_URL');
+        $actual = substr($response->headers->get('Location'), 0, 27);
+        $message = 'Expected redirect to start with' . $expected . ' but it actually starts with' . $actual;
+        $this->assertEquals(
+            $expected,
+            $actual,
+            $message
+        );
+    }
+
+    public function testCallback()
+    {
+        $uri = route('salesforce-callback', [], false);
+
+        // fake our forrest callback since it would be complicated to actually construct everything needed
+        Forrest::shouldReceive('callback')
+            ->once()
+            ->withNoArgs();
+
+        // call our route
+        $response = $this->get($uri);
+
+        // test our expectations
+        $response->assertRedirect(route('salesforce-demo'));
     }
 }

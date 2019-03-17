@@ -5,19 +5,17 @@ namespace Tests\Unit;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 
 /**
- * test redirect if authenticated
+ * test redirect if authenticated middleware
  *
  * Class RedirectIfAuthenticatedTest
  * @package Tests\Unit
  */
-class RedirectIfAuthenticatedTest extends TestCase
+class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 {
 
     /**
