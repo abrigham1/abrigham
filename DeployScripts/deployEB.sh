@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# exit if any command fails
+set -e
+
 # switch to deploy scripts dir
 cd `dirname "$(readlink -f "$0")"`
 
