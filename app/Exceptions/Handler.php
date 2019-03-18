@@ -11,7 +11,6 @@ use Abrigham\LaravelEmailExceptions\Exceptions\EmailHandler as ExceptionHandler;
  *
  * Class Handler
  * @package App\Exceptions
- * @codeCoverageIgnore 
  */
 class Handler extends ExceptionHandler
 {

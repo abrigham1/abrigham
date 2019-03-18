@@ -2,10 +2,8 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Support\Facades\Session;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
 
 /**
