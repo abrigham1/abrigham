@@ -33,7 +33,5 @@ mix.sass('resources/sass/app.scss', 'public/css');
 // add sourcemaps for debugging
 mix.sourceMaps();
 
-// if we're compiling production lets also version the files
-if (mix.inProduction()) {
-    mix.version();
-}
+// version our files so we can cache them long term
+mix.version();
