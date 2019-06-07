@@ -18,9 +18,10 @@ install:
   - docker-compose up --build -d workspace
   - docker-compose ps
   - docker-compose exec workspace bash -c "composer install --no-progress --no-suggest --no-interaction && php artisan key:generate --ansi && npm install --quiet && npm run dev"
-# run phpunit and phpcs
+# run phpunit, mocha, and phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
+  - docker-compose exec workspace bash -c "npm run test"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:

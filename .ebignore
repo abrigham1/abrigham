@@ -9,6 +9,8 @@ npm-debug.log
 .env
 .phpstorm.meta.php
 _ide_helper.php
+public/bundle.js
+public/main.js
 /MovieReviewClassifier/.idea/
 .env.*
 !.env.example
