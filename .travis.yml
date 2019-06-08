@@ -17,7 +17,7 @@ install:
   - cd laradock
   - docker-compose up --build -d workspace
   - docker-compose ps
-  - docker-compose exec workspace bash -c "composer install --no-progress --no-suggest --no-interaction && php artisan key:generate --ansi && npm install --quiet && npm run dev"
+  - docker-compose exec -u laradock workspace bash -c "composer install --no-progress --no-suggest --no-interaction && php artisan key:generate --ansi && npm install --quiet && npm run dev"
 # run phpunit, mocha, and phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
