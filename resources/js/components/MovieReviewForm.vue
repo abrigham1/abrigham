@@ -24,7 +24,7 @@
                           class="form-control"
                           rows="10"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit-review" type="submit" class="btn btn-primary">Submit</button>
             <div id="results-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
                  aria-labelledby="mySmallModalLabel">
                 <div class="modal-dialog modal-sm" role="document">
