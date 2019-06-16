@@ -14,6 +14,7 @@ public/main.js
 /MovieReviewClassifier/.idea/
 .env.*
 !.env.example
+!.env.travis
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
