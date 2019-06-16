@@ -17,6 +17,7 @@ before_install:
   - git submodule update --init --recursive
 # install all our dependencies
 install:
+  - ping abrigham.test
   - bash first_install.sh
   - cd laradock
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
