@@ -4,6 +4,10 @@ language: generic
 # need docker added since everything is based off it
 services:
   - docker
+addons:
+  hosts:
+    - abrigham.test
+    - mlapi.abrigham.test
 # don't install submodules we're doing it manually since it wasn't working correctly
 git:
   submodules: false
