@@ -38,6 +38,3 @@ script:
 # upload coverage report to coveralls.io
 after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
-# no email notifications please
-notifications:
-  email: false
