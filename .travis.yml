@@ -22,13 +22,14 @@ install:
   - cd laradock
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
   - docker-compose ps
-  - docker-compose exec workspace bash -c "cp .env.travis .env"
   - docker-compose exec workspace bash -c "composer install --no-suggest --no-interaction --prefer-dist"
   - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
   - docker-compose exec workspace bash -c "npm install --unsafe-perm"
   - docker-compose exec workspace bash -c "npm run dev"
 # run phpunit, mocha, and phpcs
 script:
+  - wget -O - http://abrigham.test
+  - curl http://abrigham.test
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   - docker-compose exec workspace bash -c "npm run test"
   - docker-compose exec workspace bash -c "php artisan dusk"
