@@ -20,7 +20,7 @@ before_install:
 install:
   - bash first_install.sh
   - cp -f .env.travis .env
-  - chmod -R 755 storage
+  - chmod -R 777 storage
   - cd laradock
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
   - docker-compose ps
