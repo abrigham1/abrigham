@@ -30,7 +30,7 @@ install:
   - docker-compose exec workspace bash -c "npm run dev"
 # run phpunit, mocha, and phpcs
 script:
-  - docker-compose exec workspace bash -c "wget -O - http://abrigham.test"
+  - docker-compose exec selenium bash -c "wget -O - http://abrigham.test"
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   - docker-compose exec workspace bash -c "npm run test"
   - docker-compose exec workspace bash -c "php artisan dusk"
