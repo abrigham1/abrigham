@@ -39,3 +39,38 @@ script:
 # upload coverage report to coveralls.io
 after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
+# upload our tested docker images to amazon ECR and prepare app for production deployment
+before_deploy:
+# tag our docker images
+  - docker tag laradock_nginx:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
+  - docker tag laradock_php-fpm:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest
+  - docker tag laradock_anaconda:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest
+# AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env vars must be set!
+  - eval $(aws ecr get-login --no-include-email --region us-east-1)
+# push docker images out
+  - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
+  - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest
+  - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest
+# prepare app for production deploy
+  - docker-compose exec workspace bash -c "composer install --no-dev --optimize-autoloader --no-interaction --no-suggest --prefer-dist"
+  - docker-compose exec workspace bash -c "npm install --unsafe-perm"
+  - docker-compose exec workspace bash -c "npm run prod"
+  - docker-compose exec workspace bash -c "php artisan clear-compiled"
+  - docker-compose exec workspace bash -c "php artisan route:clear"
+  - docker-compose exec workspace bash -c "php artisan cache:clear"
+  - docker-compose exec workspace bash -c "php artisan view:clear"
+  - docker-compose exec workspace bash -c "php artisan route:cache"
+# deploy via elastic beanstalk
+deploy:
+  provider: elasticbeanstalk
+  skip_cleanup: true
+  access_key_id:
+    secure: AgH1z/EDY6DXmPA4s56QYm+fh/iC0iWucZ225TzfveRhRtUa/FMpYYRw3JATdvg6nuJMvWnS1jZ54xa2Q8zJrALpeie9pE23TfdYABo4yL3Qn7xlUfCQYDfj/j5DSg/eH4LB4loHxInZ0F746l0bxL6EQ4wW3ecFUrUxagGFnjIwWV/Iy/YO45LTGxyICQBBp5K6VJ3tiqyTmyTaXK9ggVJniMOXlpTAdWnjX8WuvTvkNIXv4TC3PTCkDqbUy0YXJke5lcPjwydgUw4FshQzQaCFq4NPNwYF7WaHlu1H6k8Gnl0FrXcM6/Y3dltgKPc5M0oxthnNsQI2D5jcuna7y37hUyCPj128OWBUOnMx6KgAZ8+MGq5xRRV1Bq5Fc7QkuBTF8J6vX73h0gtZqGv24l8PQy6+AvhSM3I+whRTCPmHMSg00yDgMPd84aCzxOMvKL/hMig2P/HKpkM9i5c9oUPYrqUmC8fL7BotWYBsogn58BSMW50FwiVQhkKFHWSSmR8QSNncoisuVJydVvWy2IR8NEdV1v4s7tWcRNlDCKe27qbHBhe92AsZltPWeU8KqO5X7ieS0id4z5tcUCFtsxxri7DDEsADuSc90AMS+EVQG7cv/SgJhTqZCyDxq/OB6+kCY5ysEWNTRJvlPoENy8mg/RyNVJXUu6+zxXIWpwc=
+  secret_access_key:
+    secure: mX/aWftvpX4XLED/4nNVtB0fQIq1utSpJ4tT+E+eM/tAA24jyMcxNV02hhyxpK1EPpmtIZpX3eUtN8SoD7teMHR7kDthrYdURcoriRuW7IOZiWncmbw1ZKVM8BTml8K/jrKqXkLM3SLVx/hIzKAnDSye3lrNP1YoV2SUk4VLF6OCCx2LIuYPkUi2Q3GBiW47wftblPMOWbQGPvsNysFzBTAqTFDPlYdYq8i++uFb+zBftBo35cpgmvj3i3AW6FM5GIB4C5Zlr7nb2N6mlnTWZOwSPWWex7Z87m0HrwjZKKzvsFRI7XRQseKwgNyIZV9ypxrzCLssR3kZjuDJu7gWvkWnODw9CVyHTmRTL9L2xpKi8pVQCkpQ7asi8SmHf2mHgutiStFNnNlaEI3fWCi4mcjKz63EVgmEcCLpVPjXKCIOQCIuwemhcj09En109G6rxahC2lFFrhWudAhmp7PQhuRt2g5XBevzaDnZqi7EEKPguPSNwC5ZpX53/ox2uRdJrXPVmI0djamdSIjgvOz7S9k+T4bvvqOQPDmJzlXsUOPJpgTYhIxywgPuQ3Dj78HrEtUoXcCPmCY2ShH5xEoDJVI5mBm4FYgUWCVi8LxemxBn3FPrenSNBly5oJXrRULcoIEGme/0pnAYJxtSdxnif9h0GZa/C/XmFvVA3DzXSv0=
+  region: us-east-1
+  app: abrigham
+  env: abrigham-prod
+  on:
+    branch: master
+    repo: abrigham1/abrigham
