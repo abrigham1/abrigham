@@ -68,9 +68,10 @@ before_deploy:
   - git config user.email "abrigham1@gmail.com"
   - git config user.name "Aaron Brigham"
 # laradock submodule also needs to be added so lets remove it as a submodule first
-  - git rm --cached laradock
-  - git rm .gitmodules
-  - rm -rf laradock/.git
+  - mv laradock laradock_tmp
+  - git submodule deinit laradock
+  - git rm laradock
+  - mv laradock_tmp laradock
 # force add and commit so they will all be picked up for the deploy
   - git add --force laradock vendor node_modules public/mix-manifest.json
   - git commit -nm "add laradock/vendor/node_modules/etc so they will be deployed"
