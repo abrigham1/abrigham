@@ -72,8 +72,9 @@ before_deploy:
   - git rm --cached laradock
   - git rm .gitmodules
   - rm -rf laradock/.git
+  - git add laradock
 # force add and commit so they will all be picked up for the deploy
-  - git add --force laradock vendor node_modules public/mix-manifest.json
+  - git add --force vendor node_modules public/mix-manifest.json
   - git commit -nm "add laradock/vendor/node_modules/etc so they will be deployed"
 # deploy via elastic beanstalk
 deploy:
