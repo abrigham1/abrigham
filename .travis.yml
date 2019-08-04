@@ -67,8 +67,13 @@ before_deploy:
   - cd ../
   - git config user.email "abrigham1@gmail.com"
   - git config user.name "Aaron Brigham"
-  - git add --force vendor node_modules public/mix-manifest.json
-  - git commit -nm "add vendors/node_modules/etc so they will be deployed"
+# laradock submodule also needs to be added so lets remove it as a submodule first
+  - git rm --cached laradock
+  - git rm .gitmodules
+  - rm -rf laradock/.git
+# force add and commit so they will all be picked up for the deploy
+  - git add --force laradock vendor node_modules public/mix-manifest.json
+  - git commit -nm "add laradock/vendor/node_modules/etc so they will be deployed"
 # deploy via elastic beanstalk
 deploy:
   provider: elasticbeanstalk
@@ -81,6 +86,7 @@ deploy:
   app: abrigham
   env: abrigham-prod
   bucket_name: elasticbeanstalk-us-east-1-620139381534
+  bucker_path: abrigham
   on:
     branch: master
     repo: abrigham1/abrigham
