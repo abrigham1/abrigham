@@ -16,8 +16,10 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - pip install awscli --upgrade --user
+  - pip install awscli --upgrade
   - aws --version
+  - pip install awsebcli --upgrade
+  - eb --version
 # install all our dependencies
 install:
   - bash first_install.sh
