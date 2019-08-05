@@ -20,3 +20,11 @@ public/main.js
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .phpunit.result.cache
+
+laradock/logs/apache2/*
+!laradock/logs/apache2/.gitkeep
+laradock/logs/nginx/*
+!laradock/logs/nginx/.gitkeep
+laradock/nginx/ssl/*.crt
+laradock/nginx/ssl/*.key
+laradock/nginx/ssl/*.csr
