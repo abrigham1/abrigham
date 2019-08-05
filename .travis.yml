@@ -18,7 +18,11 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - python -v
+  - add-apt-repository ppa:deadsnakes/ppa
+  - apt-get update
+  - apt-get install python3.6
+  - pip install awscli --upgrade --user
+  - aws --version
 # install all our dependencies
 install:
   - bash first_install.sh
