@@ -1,6 +1,9 @@
 # setting to generic cause we're using docker so we don't
 # need them to install anything for us
 language: generic
+dist: bionic
+python:
+  - "3.7"
 # need docker added since everything is based off it
 services:
   - docker
