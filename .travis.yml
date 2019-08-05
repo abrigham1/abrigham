@@ -16,10 +16,6 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
-  - pip install awscli --upgrade
-  - aws --version
-  - pip install awsebcli --upgrade
-  - eb --version
 # install all our dependencies
 install:
   - bash first_install.sh
@@ -46,9 +42,9 @@ after_success:
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
 # install aws cli
-  - pip install awscli --upgrade --user
+  - pip install awscli --upgrade
   - aws --version
-  - pip install awsebcli --upgrade --user
+  - pip install awsebcli --upgrade
   - eb --version
 # tag our docker images
   - docker tag laradock_nginx:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
