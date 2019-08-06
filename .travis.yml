@@ -1,6 +1,6 @@
-language: python
-python:
-  - "3.6"
+# setting to generic cause we're using docker so we don't
+# need them to install anything for us
+language: generic
 # need docker added since everything is based off it
 services:
   - docker
@@ -28,11 +28,11 @@ install:
   - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
   - docker-compose exec workspace bash -c "npm install --unsafe-perm"
   - docker-compose exec workspace bash -c "npm run dev"
-# run phpunit, mocha, and phpcs
+# run phpunit, laravel dusk, mocha, and phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
-# dusk must run before npm run test because it re-compiles webpack
-# (or we could run npm run dev again between npm run test and php artisan dusk)
+  # dusk must run before npm run test because it re-compiles webpack
+  # (or we could run npm run dev again between npm run test and php artisan dusk)
   - docker-compose exec workspace bash -c "php artisan dusk"
   - docker-compose exec workspace bash -c "npm run test"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
@@ -41,22 +41,22 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
-# install aws cli
-  - pip install awscli --upgrade
+  # install aws cli
+  - pip install awscli --upgrade --user
   - aws --version
-  - pip install awsebcli --upgrade
+  - pip install awsebcli --upgrade --user
   - eb --version
-# tag our docker images
+  # tag our docker images
   - docker tag laradock_nginx:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
   - docker tag laradock_php-fpm:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest
   - docker tag laradock_anaconda:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest
-# AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env vars must be set!
+  # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY env vars must be set!
   - eval $(aws ecr get-login --no-include-email --region us-east-1)
-# push docker images out
+  # push docker images out
   - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
   - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest
   - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest
-# prepare app for production deploy
+  # prepare app for production deploy
   - docker-compose exec workspace bash -c "composer install --no-dev --optimize-autoloader --no-interaction --no-suggest --prefer-dist"
   - docker-compose exec workspace bash -c "npm install --unsafe-perm"
   - docker-compose exec workspace bash -c "npm run prod"
