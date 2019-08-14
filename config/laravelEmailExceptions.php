@@ -42,7 +42,9 @@ return [
      */
     'ErrorEmail' => [
         'email' => true,
-        'dontEmail' => [],
+        'dontEmail' => [
+            Symfony\Component\HttpFoundation\Exception\SuspiciousOperationException::class
+        ],
         'throttle' => true,
         'throttleCacheDriver' => env('CACHE_DRIVER', 'file'),
         'throttleDurationMinutes' => 5,
