@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use \Exception;
+use Exception;
 use Omniphx\Forrest\Exceptions\MissingRefreshTokenException;
 use Omniphx\Forrest\Exceptions\TokenExpiredException;
 use Omniphx\Forrest\Providers\Laravel\Facades\Forrest;
