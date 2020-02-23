@@ -7,6 +7,16 @@ services:
   - docker
 # add hosts entries for abrigham and mlapi.abrigham (need these for laravel dusk tests)
 addons:
+  apt:
+    update: true
+    packages:
+      - jq
+      - bash
+      - docker-ce
+      - python3-dev
+      - python3-pip
+      - python3-six
+      - python3-setuptools
   hosts:
     - abrigham.test
     - mlapi.abrigham.test
@@ -45,9 +55,9 @@ before_deploy:
   - pip -V
   - pip3 -V
   # install aws cli
-  - pip install awscli --upgrade --user
+  - pip3 install awscli --upgrade --user
   - aws --version
-  - pip install awsebcli --upgrade --user
+  - pip3 install awsebcli --upgrade --user
   - eb --version
   # tag our docker images
   - docker tag laradock_nginx:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
