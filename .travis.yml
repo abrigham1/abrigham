@@ -40,10 +40,11 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
+  - apt-get install python3-pip
   # install aws cli
-  - pip install awscli --upgrade --user
+  - pip3 install awscli --upgrade --user
   - aws --version
-  - pip install awsebcli --upgrade --user
+  - pip3 install awsebcli --upgrade --user
   - eb --version
   # tag our docker images
   - docker tag laradock_nginx:latest 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/nginx:latest
