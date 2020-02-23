@@ -1,6 +1,7 @@
 # setting to generic cause we're using docker so we don't
 # need them to install anything for us
 language: generic
+os: linux
 python: 3
 # need docker added since everything is based off it
 services:
@@ -51,9 +52,8 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
-  - python --version
-  - pip -V
   - pip3 -V
+  - pip3 install wheel
   # install aws cli
   - pip3 install awscli --upgrade --user
   - aws --version
