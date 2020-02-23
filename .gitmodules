@@ -1,3 +1,4 @@
 [submodule "laradock"]
 	path = laradock
 	url = git@github.com:abrigham1/laradock.git
+	branch = master
