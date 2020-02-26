@@ -6,6 +6,10 @@ python: 3
 # need docker added since everything is based off it
 services:
   - docker
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.composer/cache
 # add hosts entries for abrigham and mlapi.abrigham (need these for laravel dusk tests)
 addons:
   apt:
