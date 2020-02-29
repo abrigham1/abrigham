@@ -34,7 +34,8 @@ before_install:
   - git submodule update --init --recursive
 # install all our dependencies
 install:
-  - bash first_install.sh
+  - cp .env.travis .env
+  - cp laradock/env-example laradock/.env
   - chmod -R 777 storage
   - cd laradock
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
