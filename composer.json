@@ -17,13 +17,14 @@
     "omniphx/forrest": "2.*"
   },
   "require-dev": {
-    "facade/ignition": "^1.4",
     "barryvdh/laravel-debugbar": "^3.0",
     "barryvdh/laravel-ide-helper": "^2.3",
     "beyondcode/laravel-dump-server": "^1.0",
+    "facade/ignition": "^1.4",
     "filp/whoops": "^2.0",
     "fzaninotto/faker": "^1.7",
     "laravel/dusk": "^5.1",
+    "laravel/telescope": "^3.1",
     "mockery/mockery": "^1.0",
     "nunomaduro/collision": "^3.0",
     "php-coveralls/php-coveralls": "^2.1",

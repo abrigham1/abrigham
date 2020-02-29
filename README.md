@@ -29,7 +29,7 @@ Once done navigate to the main directory in the command line and run the followi
 cd laradock
 
 # bring up our docker containers
-docker-compose up -d nginx
+docker-compose up -d
 
 # install composer dependencies, npm dependencies, compile assets, generate encryption key
 docker-compose exec --user=laradock workspace bash -c "composer install --no-interaction && php artisan key:generate --ansi && npm install --quiet && npm run dev"
