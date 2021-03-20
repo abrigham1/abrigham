@@ -4,70 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35661ce0a0268a8b85236156e481bc48",
+    "content-hash": "f2fe6177353d197032ac5f573a551236",
     "packages": [
-        {
-            "name": "abrigham/laravel-email-exceptions",
-            "version": "4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/abrigham1/laravel-email-exceptions.git",
-                "reference": "b29c3e4c9bf0eed29c0720261ee3844975467d3c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/abrigham1/laravel-email-exceptions/zipball/b29c3e4c9bf0eed29c0720261ee3844975467d3c",
-                "reference": "b29c3e4c9bf0eed29c0720261ee3844975467d3c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "^6.0|^7.0|^8.0",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~1.0",
-                "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "5.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Abrigham\\LaravelEmailExceptions\\EmailExceptionsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Abrigham\\LaravelEmailExceptions\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aaron Brigham",
-                    "email": "abrigham1@gmail.com"
-                }
-            ],
-            "description": "Email Exceptions from your laravel application",
-            "keywords": [
-                "debugging",
-                "email",
-                "exception",
-                "exception-handling",
-                "laravel",
-                "laravel-5-package"
-            ],
-            "support": {
-                "issues": "https://github.com/abrigham1/laravel-email-exceptions/issues",
-                "source": "https://github.com/abrigham1/laravel-email-exceptions/tree/4.0"
-            },
-            "time": "2021-03-20T11:46:17+00:00"
-        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",

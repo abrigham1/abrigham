@@ -9,7 +9,6 @@
   "type": "project",
   "require": {
     "php": "^7.3|^8.0",
-    "abrigham/laravel-email-exceptions": "^4.0",
     "fruitcake/laravel-cors": "^2.0",
     "fideloper/proxy": "^4.4",
     "guzzlehttp/guzzle": "^7.0.1",
@@ -25,7 +24,7 @@
     "facade/ignition": "^2.5",
     "fzaninotto/faker": "^1.9.1",
     "laravel/dusk": "^6.13",
-    "laravel/telescope": "^4.0",
+    "laravel/telescope": "^4.4",
     "mockery/mockery": "^1.4.2",
     "nunomaduro/collision": "^5.0",
     "php-coveralls/php-coveralls": "^2.1",
@@ -54,6 +53,7 @@
   "extra": {
     "laravel": {
       "dont-discover": [
+        "laravel/telescope"
       ]
     }
   },
