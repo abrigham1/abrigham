@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Support\Facades\Config;
 use Tests\Browser\Pages\MovieReview;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
@@ -16,7 +17,9 @@ class MovieReviewTest extends DuskTestCase
      */
     public function testMovieReviewPage()
     {
+        var_dump('app url: ' . Config::get('app.url'));
         $this->browse(function (Browser $browser) {
+            var_dump('browser base url: ' . $browser::$baseUrl);
             $browser->visit(new MovieReview)
                     ->assertSee('Machine Learning with Scikit Learn');
         });
