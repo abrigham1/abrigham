@@ -22,6 +22,7 @@ addons:
       - python3-pip
       - python3-six
       - python3-setuptools
+      - python3-wheel
   hosts:
     - abrigham.test
     - mlapi.abrigham.test
@@ -59,9 +60,12 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
-  - pip3 install --upgrade pip3 setuptools six dev
+  - pip -V
+  - pip install --upgrade pip setuptools wheel
+  - pip -V
   - pip3 -V
-  - pip3 install wheel
+  - pip3 install --upgrade pip setuptools wheel
+  - pip3 -V
   # install aws cli
   - pip3 install awscli --upgrade --user
   - aws --version
