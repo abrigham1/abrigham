@@ -59,6 +59,7 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
+  - pip3 install --upgrade pip
   - pip3 -V
   - pip3 install wheel
   # install aws cli
