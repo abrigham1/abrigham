@@ -26,6 +26,18 @@ git:
   submodules: false
 # install our laradock submodule
 before_install:
+  - pyenv versions
+  - pyenv install 3.9.2
+  - pyenv local 3.9.2
+  - pip -V
+  - pip install --upgrade python-dev-tools pip setuptools wheel
+  - pip -V
+  # install aws cli
+  - pip install awscli --upgrade --user
+  - aws --version
+  - pip install awsebcli --upgrade --user
+  - eb --version
+  - curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 # install all our dependencies
@@ -55,7 +67,6 @@ after_success:
   - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
-  - pyenv update
   - pyenv install 3.9.2
   - pyenv local 3.9.2
   - pip -V
