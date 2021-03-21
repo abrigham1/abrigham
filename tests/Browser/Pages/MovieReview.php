@@ -13,7 +13,7 @@ class MovieReview extends Page
      */
     public function url()
     {
-        return route('home', [], false);
+        return '/';
     }
 
     /**

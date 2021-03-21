@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Support\Facades\Config;
 use Tests\Browser\Pages\MovieReview;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
