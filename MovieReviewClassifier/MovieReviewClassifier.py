@@ -3,7 +3,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.externals import joblib
+import joblib
 from pprint import pprint
 from time import time
 import os

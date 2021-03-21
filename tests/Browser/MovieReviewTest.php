@@ -17,9 +17,7 @@ class MovieReviewTest extends DuskTestCase
      */
     public function testMovieReviewPage()
     {
-        var_dump('app url: ' . Config::get('app.url'));
         $this->browse(function (Browser $browser) {
-            var_dump('browser base url: ' . $browser::$baseUrl);
             $browser->visit(new MovieReview)
                     ->assertSee('Machine Learning with Scikit Learn');
         });

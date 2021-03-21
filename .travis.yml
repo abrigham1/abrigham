@@ -38,6 +38,8 @@ install:
   - cp laradock/env-example laradock/.env
   - chmod -R 777 storage
   - cd laradock
+  - docker-compose rm -f
+  - docker-compose pull
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
   - docker-compose ps
   - docker-compose exec workspace bash -c "composer install --no-suggest --no-interaction --prefer-dist"
