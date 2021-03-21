@@ -27,7 +27,7 @@ git:
 # install our laradock submodule
 before_install:
   - pyenv versions
-  - pyenv install -y 3.7.1
+  - pyenv install -s 3.7.1
   - pyenv local 3.7.1
   - pip -V
   - pip install --upgrade python-dev-tools pip setuptools wheel
