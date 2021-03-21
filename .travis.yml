@@ -26,6 +26,9 @@ git:
   submodules: false
 # install our laradock submodule
 before_install:
+  - curl https://pyenv.run | bash
+  - exec $SHELL
+  - pyenv update
   - pyenv versions
   - pyenv install 3.9.2
   - pyenv local 3.9.2
