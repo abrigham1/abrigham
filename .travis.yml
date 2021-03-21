@@ -26,7 +26,6 @@ git:
   submodules: false
 # install our laradock submodule
 before_install:
-  - curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
 # install all our dependencies
