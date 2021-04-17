@@ -90,5 +90,5 @@ deploy:
   skip_cleanup: true
   script: bash DeployScripts/deployProd.sh
   on:
-    branch: master
+    branch: main
     repo: abrigham1/abrigham
