@@ -16,7 +16,7 @@
 import MainLayout from '@/Layouts/Main'
 import {PerspectiveCamera, Color, Scene, PointLight, Mesh, SphereGeometry, MeshPhongMaterial, PlaneGeometry, MeshBasicMaterial, WebGLRenderer} from 'three';
 import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect';
-import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 let camera, controls, scene, renderer, effect, container, containerPositionInfo, animationId;
 
@@ -86,8 +86,12 @@ export default {
       // Special case: append effect.domElement, instead of renderer.domElement.
       // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.
 
-      controls = new TrackballControls( camera, effect.domElement );
-      controls.rotateSpeed = 6.0;
+      // controls
+      controls = new OrbitControls( camera, effect.domElement );
+      controls.target.set( 0, 0.5, 0 );
+      controls.update();
+      controls.enablePan = false;
+      controls.enableDamping = true;
 
       window.addEventListener( 'resize', this.onWindowResize );
     },

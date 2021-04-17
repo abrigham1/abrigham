@@ -1,0 +1,29 @@
+[1mdiff --git a/resources/js/Pages/ThreeDemo.vue b/resources/js/Pages/ThreeDemo.vue[m
+[1mindex ed04758..6a82c56 100644[m
+[1m--- a/resources/js/Pages/ThreeDemo.vue[m
+[1m+++ b/resources/js/Pages/ThreeDemo.vue[m
+[36m@@ -16,6 +16,7 @@[m
+ import MainLayout from '@/Layouts/Main'[m
+ import {PerspectiveCamera, Color, Scene, PointLight, Mesh, SphereGeometry, MeshPhongMaterial, PlaneGeometry, MeshBasicMaterial, WebGLRenderer} from 'three';[m
+ import { AsciiEffect } from 'three/examples/jsm/effects/AsciiEffect';[m
+[32m+[m[32mimport { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'[m
+ import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';[m
+ [m
+ let camera, controls, scene, renderer, effect, container, containerPositionInfo, animationId;[m
+[36m@@ -86,8 +87,14 @@[m [mexport default {[m
+       // Special case: append effect.domElement, instead of renderer.domElement.[m
+       // AsciiEffect creates a custom domElement (a div container) where the ASCII elements are placed.[m
+ [m
+[31m-      controls = new TrackballControls( camera, effect.domElement );[m
+[31m-      controls.rotateSpeed = 6.0;[m
+[32m+[m[32m      // controls[m
+[32m+[m[32m      controls = new OrbitControls( camera, effect.domElement );[m
+[32m+[m[32m      controls.target.set( 0, 0.5, 0 );[m
+[32m+[m[32m      controls.update();[m
+[32m+[m[32m      controls.enablePan = false;[m
+[32m+[m[32m      controls.enableDamping = true;[m
+[32m+[m[32m      //controls = new TrackballControls( camera, effect.domElement );[m
+[32m+[m[32m      //controls.rotateSpeed = 6.0;[m
+ [m
+       window.addEventListener( 'resize', this.onWindowResize );[m
+     },[m
