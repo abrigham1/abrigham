@@ -28,13 +28,13 @@ git:
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 # install all our dependencies
 install:
   - cp .env.travis .env
-  - cp laradock/env-example laradock/.env
+  - cp laradock/.env.example laradock/.env
   - chmod -R 777 storage
   - cd laradock
-  - docker-compose rm -f
   - docker-compose pull
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
   - docker-compose ps
@@ -42,13 +42,11 @@ install:
   - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
   - docker-compose exec workspace bash -c "npm install --unsafe-perm"
   - docker-compose exec workspace bash -c "npm run dev"
-# run phpunit, laravel dusk, mocha, and phpcs
+# run phpunit, jest, dusk, phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
-  # dusk must run before npm run test because it re-compiles webpack
-  # (or we could run npm run dev again between npm run test and php artisan dusk)
-  - docker-compose exec workspace bash -c "php artisan dusk"
   - docker-compose exec workspace bash -c "npm run test"
+  - docker-compose exec workspace bash -c "php artisan dusk"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:

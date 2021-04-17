@@ -15,13 +15,12 @@ class HomeControllerTest extends TestCase
     /**
      * test homepage
      */
-    public function testHomepage()
+    public function testHomepage(): void
     {
         $uri = route('home', [], false);
         $response = $this->get($uri);
 
         // make our assertions
-        $response->assertOk()
-            ->assertSeeText("Machine Learning with Scikit Learn");
+        $response->assertOk();
     }
 }

@@ -16,13 +16,12 @@ class ThreeDemoControllerTest extends TestCase
     /**
      * test the three demo page
      */
-    public function testThreeDemo()
+    public function testThreeDemo(): void
     {
         $uri = route('three-demo', [], false);
         $response = $this->get($uri);
 
         // make our assertions
-        $response->assertOk()
-            ->assertSeeText('Three.js Demo test');
+        $response->assertOk();
     }
 }

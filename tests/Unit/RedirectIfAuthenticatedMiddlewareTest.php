@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Mockery;
 use Tests\TestCase;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
 
 /**
  * test redirect if authenticated middleware
@@ -24,11 +25,11 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
      * @dataProvider handleProvider
      * @param $authenticated
      */
-    public function testHandle($authenticated)
+    public function testHandle($authenticated): void
     {
         // set up some mocks to use
         $request = Request::create('/login', 'GET');
-        $guard = Mockery::mock('Illuminate\Contracts\Auth\Guard');
+        $guard = Mockery::mock(Guard::class);
 
         Auth::shouldReceive('guard')
             ->once()
@@ -48,14 +49,13 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
         // if we are authenticated expect to be redirected to the homepage
         if ($authenticated) {
-            $this->assertTrue(
-                $actual instanceof RedirectResponse,
-                'Failed asserting we have a redirect response'
+            self::assertInstanceOf(
+                RedirectResponse::class, $actual, 'Failed asserting we have a redirect response'
             );
-            $this->assertEquals(302, $actual->getStatusCode());
-            $this->assertEquals(route('home'), $actual->getTargetUrl());
+            self::assertEquals(302, $actual->getStatusCode());
+            self::assertEquals(route('home'), $actual->getTargetUrl());
         } else {
-            $this->assertEquals('test', $actual, 'Failed asserting that user is not authenticated');
+            self::assertEquals('test', $actual, 'Failed asserting that user is not authenticated');
         }
     }
 
@@ -64,7 +64,7 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
      *
      * @return array
      */
-    public function handleProvider()
+    public function handleProvider(): array
     {
         return [
             'Authenticated' => [

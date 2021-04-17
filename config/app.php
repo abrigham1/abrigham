@@ -167,7 +167,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Omniphx\Forrest\Providers\Laravel\ForrestServiceProvider::class,
 
         /*
          * Application Service Providers...

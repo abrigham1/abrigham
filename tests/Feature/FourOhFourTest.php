@@ -15,7 +15,7 @@ class FourOhFourTest extends TestCase
     /**
      * test homepage
      */
-    public function testHomepage()
+    public function testHomepage(): void
     {
         $response = $this->get('/404');
 

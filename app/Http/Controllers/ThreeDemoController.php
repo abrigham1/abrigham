@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
+use Inertia\Response;
 
 /**
  * Class ThreeDemoController
@@ -10,13 +11,14 @@ use App\Http\Controllers\Controller;
  */
 class ThreeDemoController extends Controller
 {
+
     /**
-     * show the homepage
+     * show the three demo
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
-    public function show()
+    public function show(): Response
     {
-        return view('three_demo');
+        return Inertia::render('ThreeDemo');
     }
 }
