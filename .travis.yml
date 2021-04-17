@@ -33,7 +33,7 @@ install:
   - cp .env.travis .env
   - cp laradock/.env.example laradock/.env
   - chmod -R 777 storage
-  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml rm -f
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml rm
   - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml pull
   - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml up --build -d workspace nginx selenium php-fpm anaconda
   - make docker-ps
