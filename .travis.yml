@@ -32,6 +32,8 @@ before_install:
 install:
   - cp .env.travis .env
   - cp laradock/.env.example laradock/.env
+  - cat laradock/.env.example
+  - cat laradock/.env
   - chmod -R 777 storage
   - docker-compose -f laradock/docker-compose.yml rm -f
   - docker-compose -f laradock/docker-compose.yml pull
