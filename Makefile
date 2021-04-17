@@ -30,19 +30,19 @@ ci/dist: ci/vendor ci/generate-key ci/node_modules ci/npm-run
 
 .PHONY: ci/vendor
 ci/vendor:
-	time bin/dev/composer install --optimize-autoloader --no-suggest --no-interaction --prefer-dist
+	bin/dev/composer install --optimize-autoloader --no-suggest --no-interaction --prefer-dist
 
 .PHONY: ci/generate-key
 ci/generate-key:
-	time bin/dev/php artisan key:generate --ansi
+	bin/dev/php artisan key:generate --ansi
 
 .PHONY: ci/npm-run
 ci/npm-run:
-	time bin/dev/npm run dev
+	bin/dev/npm run dev
 
 .PHONY: ci/node_modules
 ci/node_modules:
-	time bin/dev/npm install--unsafe-perm
+	bin/dev/npm install--unsafe-perm
 
 ########################################################
 ### Prod
@@ -52,15 +52,15 @@ prod/dist: prod/vendor prod/node_modules prod/npm-run prod/clear-cached
 
 .PHONY: prod/vendor
 prod/vendor:
-	time bin/dev/composer install --no-dev --optimize-autoloader --no-interaction --no-suggest --prefer-dist
+	bin/dev/composer install --no-dev --optimize-autoloader --no-interaction --no-suggest --prefer-dist
 
 .PHONY: prod/npm-run
 prod/npm-run:
-	time bin/dev/npm run prod
+	bin/dev/npm run prod
 
 .PHONY: prod/node_modules
 prod/node_modules:
-	time bin/dev/npm install--unsafe-perm
+	bin/dev/npm install--unsafe-perm
 
 .PHONY: prod/clear-cached
 prod/clear-cached:
