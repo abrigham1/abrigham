@@ -75,27 +75,27 @@ prod/clear-cached:
 
 .PHONY: docker-up
 docker-up:
-	docker-compose -f laradock/docker-compose.yml up -d
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml up -d
 
 .PHONY: docker-down
 docker-down:
-	docker-compose -f laradock/docker-compose.yml down
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml down
 
 .PHONY: docker-ps
 docker-ps:
-	docker-compose -f laradock/docker-compose.yml ps
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml ps
 
 .PHONY: docker-restart
 docker-restart:
-	docker-compose -f laradock/docker-compose.yml restart
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml restart
 
 .PHONY: docker-build
 docker-build:
-	docker-compose -f laradock/docker-compose.yml build
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml build
 
 .PHONY: docker-rebuild
 docker-rebuild: docker-down docker-build docker-up
 
 .PHONY: workspace
 workspace:
-	docker-compose -f laradock/docker-compose.yml exec --user=laradock workspace bash
+	docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec --user=laradock workspace bash

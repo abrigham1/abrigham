@@ -32,23 +32,21 @@ before_install:
 install:
   - cp .env.travis .env
   - cp laradock/.env.example laradock/.env
-  - cat laradock/.env.example
-  - cat laradock/.env
   - chmod -R 777 storage
-  - docker-compose -f laradock/docker-compose.yml rm -f
-  - docker-compose -f laradock/docker-compose.yml pull
-  - docker-compose -f laradock/docker-compose.yml up --build -d workspace nginx selenium php-fpm anaconda
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml rm -f
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml pull
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml up --build -d workspace nginx selenium php-fpm anaconda
   - make docker-ps
   - make ci/dist
 # run phpunit, laravel dusk, mocha, and phpcs
 script:
-  - docker-compose -f laradock/docker-compose.yml exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   - bin/dev/npm run test"
   - bin/dev/php artisan dusk"
-  - docker-compose -f laradock/docker-compose.yml exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:
-  - docker-compose -f laradock/docker-compose.yml run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
+  - docker-compose --env-file laradock/.env -f laradock/docker-compose.yml run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
   - pyenv versions
