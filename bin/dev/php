@@ -7,4 +7,4 @@ else
     PREFIX='';
 fi
 
-docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec --user=laradock workspace php $PREFIX "$@"
+docker-compose -f laradock/docker-compose.yml --env-file laradock/.env exec --user=laradock workspace php $PREFIX "$@"

@@ -68,7 +68,7 @@ bin/dev/php
 bin/dev/npm
 
 # examples
-bin/dev/php artisan test # docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec --user=laradock workspace php artisan test
-bin/dev/npm install # docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec --user=laradock workspace bash -c "npm install"
-bin/dev/composer update # docker-compose --env-file laradock/.env -f laradock/docker-compose.yml exec --user=laradock workspace bash -c "composer update"
+bin/dev/php artisan test # docker-compose -f laradock/docker-compose.yml --env-file laradock/.env exec --user=laradock workspace php artisan test
+bin/dev/npm install # docker-compose -f laradock/docker-compose.yml --env-file laradock/.env exec --user=laradock workspace bash -c "npm install"
+bin/dev/composer update # docker-compose -f laradock/docker-compose.yml --env-file laradock/.env exec --user=laradock workspace bash -c "composer update"
 ```
