@@ -34,6 +34,14 @@ export default {
   },
   beforeUnmount() {
     cancelAnimationFrame(animationId);
+    container.removeChild(effect.domElement);
+    camera = null;
+    controls = null;
+    scene = null;
+    effect = null;
+    containerPositionInfo = null;
+    animationId = null;
+    container = null;
   },
   methods: {
     init() {
