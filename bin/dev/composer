@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker-compose -f laradock/docker-compose.yml --env-file laradock/.env exec --user=laradock workspace bash -c "composer $*"
+docker-compose -f laradock/docker-compose.yml --project-directory laradock exec --user=laradock workspace bash -c "composer $*"
