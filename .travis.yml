@@ -33,20 +33,23 @@ install:
   - cp .env.travis .env
   - cp laradock/.env.example laradock/.env
   - chmod -R 777 storage
-  - chmod -R 777 bin
-  - docker-compose -f laradock/docker-compose.yml --project-directory laradock pull
-  - docker-compose -f laradock/docker-compose.yml --project-directory laradock up --build -d workspace nginx selenium php-fpm anaconda
-  - make docker-ps
-  - make ci/dist
-# run phpunit, laravel dusk, mocha, and phpcs
+  - cd laradock
+  - docker-compose pull
+  - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
+  - docker-compose ps
+  - docker-compose exec workspace bash -c "composer install --no-suggest --no-interaction --prefer-dist"
+  - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
+  - docker-compose exec workspace bash -c "npm install --unsafe-perm"
+  - docker-compose exec workspace bash -c "npm run dev"
+# run phpunit, jest, dusk, phpcs
 script:
-  - docker-compose -f laradock/docker-compose.yml --project-directory laradock exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
-  - bin/dev/npm run test"
-  - bin/dev/php artisan dusk"
-  - docker-compose -f laradock/docker-compose.yml --project-directory laradock exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
+  - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
+  - docker-compose exec workspace bash -c "npm run test"
+  - docker-compose exec workspace bash -c "php artisan dusk"
+  - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:
-  - docker-compose -f laradock/docker-compose.yml --project-directory laradock run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
+  - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
   - pyenv versions
@@ -71,7 +74,15 @@ before_deploy:
   - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/php-fpm:latest
   - docker push 620139381534.dkr.ecr.us-east-1.amazonaws.com/abrigham/anaconda:latest
   # prepare app for production deploy
-  - make prod/dist
+  - docker-compose exec workspace bash -c "composer install --no-dev --optimize-autoloader --no-interaction --no-suggest --prefer-dist"
+  - docker-compose exec workspace bash -c "npm install --unsafe-perm"
+  - docker-compose exec workspace bash -c "npm run prod"
+  - docker-compose exec workspace bash -c "php artisan clear-compiled"
+  - docker-compose exec workspace bash -c "php artisan route:clear"
+  - docker-compose exec workspace bash -c "php artisan cache:clear"
+  - docker-compose exec workspace bash -c "php artisan view:clear"
+  - docker-compose exec workspace bash -c "php artisan route:cache"
+  - cd ../
 # deploy via elastic beanstalk
 deploy:
   provider: script
