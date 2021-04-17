@@ -33,8 +33,8 @@ class MovieReviewTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview)
                 ->click('@submit-review')
-                ->waitForText('The review field is required', 10)
-                ->assertSee('The review field is required');
+                ->waitForText('Review is a required field', 10)
+                ->assertSee('Review is a required field');
         });
     }
 
@@ -48,8 +48,9 @@ class MovieReviewTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview)
                 ->type('@review', 'small review')
-                ->waitForText('The review field must be at least 15 characters', 10)
-                ->assertSee('The review field must be at least 15 characters');
+                ->click('@submit-review')
+                ->waitForText('Review must be at least 15 characters', 10)
+                ->assertSee('Review must be at least 15 characters');
         });
     }
 
@@ -63,11 +64,11 @@ class MovieReviewTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview)
                 ->type('@review', 'Test to see if reviews still work.')
-                ->assertDontSee('The review field must be at least 15 characters')
-                ->assertDontSee('The review field is required')
+                ->assertDontSee('Review must be at least 15 characters')
+                ->assertDontSee('Review is a required field')
                 ->click('@submit-review')
-                ->waitFor('@results-modal', 10)
-                ->assertSeeIn('@results-modal', 'The review is negative, I\'m 57.44% sure.');
+                ->waitFor('@results', 10)
+                ->assertSeeIn('@results', 'The review is negative, I\'m 57.44% sure.');
         });
 
     }

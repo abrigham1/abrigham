@@ -38,17 +38,14 @@ install:
   - docker-compose pull
   - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
   - docker-compose ps
-  - docker-compose exec workspace bash -c "composer install --no-suggest --no-interaction --prefer-dist"
-  - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
-  - docker-compose exec workspace bash -c "npm install --unsafe-perm"
-  - docker-compose exec workspace bash -c "npm run dev"
+  - make ci/dist
 # run phpunit, laravel dusk, mocha, and phpcs
 script:
   - docker-compose exec workspace bash -c "vendor/bin/phpunit --coverage-clover build/logs/clover.xml"
   # dusk must run before npm run test because it re-compiles webpack
   # (or we could run npm run dev again between npm run test and php artisan dusk)
-  - docker-compose exec workspace bash -c "php artisan dusk"
-  - docker-compose exec workspace bash -c "npm run test"
+  - bin/dev/php artisan dusk"
+  - bin/dev/npm run test"
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:

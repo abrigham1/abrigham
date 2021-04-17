@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker-compose -f laradock/docker-compose.yml exec --user=laradock workspace bash -c "npm $*"

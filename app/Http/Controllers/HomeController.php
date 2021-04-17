@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Config;
+use Inertia\Response;
 
 /**
  * Class HomeController
@@ -10,13 +12,14 @@ use App\Http\Controllers\Controller;
  */
 class HomeController extends Controller
 {
+
     /**
      * show the homepage
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Response
      */
-    public function show()
+    public function show(): Response
     {
-        return view('home');
+        return Inertia::render('Home', ['predictUrl' => Config::get('app.python_api_url') . '/predict']);
     }
 }

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ $1 = 'debug' ]]; then
+    PREFIX='-dxdebug.idekey=PHPSTORM -dxdebug.remote_autostart=1'
+    shift
+else
+    PREFIX='';
+fi
+
+docker-compose -f laradock/docker-compose.yml exec --user=laradock workspace php $PREFIX "$@"

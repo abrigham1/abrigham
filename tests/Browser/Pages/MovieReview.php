@@ -37,7 +37,7 @@ class MovieReview extends Page
         return [
             '@review' => '#review',
             '@submit-review' => '#submit-review',
-            '@results-modal' => '#results-modal',
+            '@results' => '#results',
         ];
     }
 }
