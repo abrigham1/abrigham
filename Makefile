@@ -1,4 +1,12 @@
 #######################################################
+### Setup
+
+.PHONY: first/install
+first/install:
+	cp -n .env.example .env
+	cp -n laradock/.env.example laradock/.env
+
+#######################################################
 ### Local
 
 .PHONY: local/dist
@@ -84,6 +92,9 @@ docker-restart:
 .PHONY: docker-build
 docker-build:
 	docker-compose -f laradock/docker-compose.yml build
+
+.PHONY: docker-rebuild
+docker-rebuild: docker-down docker-build docker-up
 
 .PHONY: workspace
 workspace:
