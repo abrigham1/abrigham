@@ -36,7 +36,7 @@ install:
   - chmod -R 777 storage
   - cd laradock
   - docker-compose pull
-  - docker-compose up --build -d workspace nginx selenium php-fpm anaconda
+  - docker-compose up --build -d workspace nginx selenium php-fpm anaconda docker-in-docker
   - docker-compose ps
   - docker-compose exec workspace bash -c "composer install --no-suggest --no-interaction --prefer-dist"
   - docker-compose exec workspace bash -c "php artisan key:generate --ansi"
@@ -50,7 +50,7 @@ script:
   - docker-compose exec workspace bash -c "vendor/bin/phpcs --standard=PSR12 ./app/Http"
 # upload coverage report to coveralls.io
 after_success:
-  - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID workspace bash -c "vendor/bin/php-coveralls -v"
+  - docker-compose run -e TRAVIS -e TRAVIS_JOB_ID -e TRAVIS_BUILD_NUMBER workspace bash -c "vendor/bin/php-coveralls -v"
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
   - pyenv versions
