@@ -1,14 +1,13 @@
 #abrigham.com
-[![Build Status](https://travis-ci.org/abrigham1/abrigham.svg?branch=master)](https://travis-ci.org/abrigham1/abrigham)
-[![Coverage Status](https://coveralls.io/repos/github/abrigham1/abrigham/badge.svg?branch=master)](https://coveralls.io/github/abrigham1/abrigham?branch=master)
-
+[![Build Status](https://travis-ci.org/abrigham1/abrigham.svg?branch=main)](https://travis-ci.org/abrigham1/abrigham)
+[![Coverage Status](https://coveralls.io/repos/github/abrigham1/abrigham/badge.svg?branch=main)](https://coveralls.io/github/abrigham1/abrigham?branch=main)
 This is the codebase that powers abrigham.com
 
 ##Table of Contents
 * [Installation](#installation)
 * [Useful Commands](#useful-commands)
 
-##Installation
+## Installation
 To run this you must first have git and docker installed.
 
 Clone the repo including the laradock submodule
@@ -36,7 +35,7 @@ bin/dev/php artisan key:generate --ansi
 
 Once docker has booted you should be able to access it locally by navigating to abrigham.test
 
-##Useful Commands
+## Useful Commands
 
 ```bash
 ### Interacting with docker ###
