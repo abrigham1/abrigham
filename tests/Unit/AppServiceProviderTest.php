@@ -19,7 +19,7 @@ class AppServiceProviderTest extends TestCase
 {
 
     /**
-     * test registr on local
+     * test register on local
      */
     public function testRegisterOnLocal(): void
     {
