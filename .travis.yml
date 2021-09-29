@@ -2,6 +2,7 @@
 # need them to install anything for us
 language: generic
 os: linux
+dist: bionic
 python: 3
 # need docker added since everything is based off it
 services:
