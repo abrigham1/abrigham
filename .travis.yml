@@ -55,8 +55,8 @@ after_success:
 # upload our tested docker images to amazon ECR and prepare app for production deployment
 before_deploy:
   - pyenv versions
-  - pyenv install -s 3.7.1
-  - pyenv local 3.7.1
+  - pyenv install -s 3.7.6
+  - pyenv local 3.7.6
   - pip -V
   - pip install --upgrade python-dev-tools pip setuptools wheel
   - pip -V
