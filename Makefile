@@ -27,26 +27,33 @@ local/npm-run:
 
 .PHONY: docker-up
 docker-up:
-	docker-compose -f laradock/docker-compose.yml --project-directory laradock up -d
+	cd laradock && docker-compose up -d && cd ../
 
 .PHONY: docker-down
 docker-down:
-	docker-compose -f laradock/docker-compose.yml --project-directory laradock down
+	cd laradock && docker-compose down && cd ../
 
 .PHONY: docker-ps
 docker-ps:
-	docker-compose -f laradock/docker-compose.yml --project-directory laradock ps
+	cd laradock && docker-compose ps && cd ../
 
 .PHONY: docker-restart
 docker-restart:
-	docker-compose -f laradock/docker-compose.yml --project-directory laradock restart
+	cd laradock &&docker-compose restart && cd ../
 
 .PHONY: docker-build
 docker-build:
-	docker-compose -f laradock/docker-compose.yml --project-directory laradock build
+	cd laradock &&docker-compose build && cd ../
+
+.PHONY: docker-build-no-cache
+docker-build-no-cache:
+	cd laradock && docker-compose build --no-cache && cd ../
 
 .PHONY: docker-rebuild
 docker-rebuild: docker-down docker-build docker-up
+
+.PHONY: docker-rebuild-no-cache
+docker-rebuild-no-cache: docker-down docker-build-no-cache docker-up
 
 .PHONY: workspace
 workspace:
