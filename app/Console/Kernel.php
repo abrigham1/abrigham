@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
     /**
      * The Artisan commands provided by your application.
      *
-     * @var array
+     * @var array<string>
      */
     protected $commands = [
         //
@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if ($this->app->isLocal()) {
+        if ($this->app->environment('local')) {
             $schedule->command('telescope:prune --hours=48')->daily();
         }
     }

@@ -27,9 +27,13 @@ class AppServiceProviderTest extends TestCase
         $mockApp = Mockery::mock(Application::class);
         $appServiceProvider = new AppServiceProvider($mockApp);
 
-        $mockApp->shouldReceive('isLocal')
+        $mockApp->shouldReceive('environment')
             ->once()
+            ->with('local')
             ->andReturn(true);
+        $mockApp->shouldReceive('register')
+            ->once()
+            ->with(\Laravel\Telescope\TelescopeServiceProvider::class);
         $mockApp->shouldReceive('register')
             ->once()
             ->with(TelescopeServiceProvider::class);
@@ -48,8 +52,9 @@ class AppServiceProviderTest extends TestCase
         $mockApp = Mockery::mock(Application::class);
         $appServiceProvider = new AppServiceProvider($mockApp);
 
-        $mockApp->shouldReceive('isLocal')
+        $mockApp->shouldReceive('environment')
             ->once()
+            ->with('local')
             ->andReturn(false);
         $mockApp->shouldNotReceive('register');
 
