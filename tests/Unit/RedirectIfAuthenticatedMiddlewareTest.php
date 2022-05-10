@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -45,7 +47,7 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
         // test the handle call
         $actual = $middleware->handle($request, function () {
-            return "test";
+            return 'test';
         }, $guard);
 
         // if we are authenticated expect to be redirected to the homepage

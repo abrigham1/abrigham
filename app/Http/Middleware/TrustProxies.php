@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 // phpcs:ignoreFile
+
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustProxies as Middleware;

@@ -1,9 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Config;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\MovieReview;
 use Tests\DuskTestCase;
