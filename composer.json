@@ -33,6 +33,7 @@
     "phpstan/extension-installer": "^1.1",
     "phpstan/phpstan-mockery": "^1.1",
     "phpunit/phpunit": "^9.3.3",
+    "rector/rector": "^0.12.23",
     "roave/security-advisories": "dev-latest",
     "spatie/laravel-ignition": "^1.0",
     "symplify/easy-coding-standard": "^10.2"
