@@ -24,9 +24,8 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
      * test handle function
      *
      * @dataProvider handleProvider
-     * @param $authenticated
      */
-    public function testHandle($authenticated): void
+    public function testHandle(bool $authenticated): void
     {
         // set up some mocks to use
         $request = Request::create('/login', 'GET');
@@ -66,6 +65,8 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
     /**
      * handle data provider
+     *
+     * @return array<string,<int,bool>>
      */
     public function handleProvider(): array
     {
