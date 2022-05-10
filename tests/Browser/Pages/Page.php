@@ -11,7 +11,7 @@ abstract class Page extends BasePage
     /**
      * Get the global element shortcuts for the site.
      *
-     * @return array
+     * @return string[]
      */
     public static function siteElements()
     {

@@ -29,7 +29,7 @@ class MovieReview extends Page
     /**
      * Get the element shortcuts for the page.
      *
-     * @return array
+     * @return string[]
      */
     public function elements()
     {
