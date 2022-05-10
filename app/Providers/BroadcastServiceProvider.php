@@ -7,19 +7,12 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\ServiceProvider;
 
-/**
- * Broadcast service provider
- *
- * Class BroadcastServiceProvider
- * @package App\Providers
- * @codeCoverageIgnore
- */
 class BroadcastServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
         Broadcast::routes();
 

@@ -30,6 +30,8 @@
     "nunomaduro/collision": "^6.1",
     "nunomaduro/larastan": "^2.0",
     "php-coveralls/php-coveralls": "^2.1",
+    "phpstan/extension-installer": "^1.1",
+    "phpstan/phpstan-mockery": "^1.1",
     "phpunit/phpunit": "^9.3.3",
     "roave/security-advisories": "dev-latest",
     "spatie/laravel-ignition": "^1.0",
@@ -38,7 +40,10 @@
   "config": {
     "preferred-install": "dist",
     "sort-packages": true,
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
   },
   "autoload": {
     "psr-4": {

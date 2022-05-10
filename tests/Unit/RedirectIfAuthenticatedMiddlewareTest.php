@@ -33,7 +33,7 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
         Auth::shouldReceive('guard')
             ->once()
-            ->with($guard)
+            ->with('mockGuard')
             ->andReturn($guard);
 
         $guard->shouldReceive('check')
@@ -46,8 +46,8 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
         // test the handle call
         $actual = $middleware->handle($request, function () {
-            return 'test';
-        }, $guard);
+            return response('test');
+        }, 'mockGuard');
 
         // if we are authenticated expect to be redirected to the homepage
         if ($authenticated) {
@@ -59,14 +59,14 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
             self::assertEquals(302, $actual->getStatusCode());
             self::assertEquals(route('home'), $actual->getTargetUrl());
         } else {
-            self::assertEquals('test', $actual, 'Failed asserting that user is not authenticated');
+            self::assertEquals('test', $actual->getContent(), 'Failed asserting that user is not authenticated');
         }
     }
 
     /**
      * handle data provider
      *
-     * @return array<string,<int,bool>>
+     * @return array<string,array<int,bool>>
      */
     public function handleProvider(): array
     {

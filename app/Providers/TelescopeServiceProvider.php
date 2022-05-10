@@ -42,7 +42,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     /**
      * Prevent sensitive request details from being logged by Telescope.
      */
-    protected function hideSensitiveRequestDetails()
+    protected function hideSensitiveRequestDetails(): void
     {
         if ($this->app->environment('local')) {
             return;
@@ -64,10 +64,6 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     protected function gate()
     {
-        Gate::define('viewTelescope', function ($user) {
-            return in_array($user->email, [
-                //
-            ], true);
-        });
+        //
     }
 }

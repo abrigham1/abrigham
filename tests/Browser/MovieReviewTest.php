@@ -15,7 +15,7 @@ class MovieReviewTest extends DuskTestCase
      *
      * @throws \Throwable
      */
-    public function testMovieReviewPage()
+    public function testMovieReviewPage(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview())
@@ -28,7 +28,7 @@ class MovieReviewTest extends DuskTestCase
      *
      * @throws \Throwable
      */
-    public function testMovieReviewEmpty()
+    public function testMovieReviewEmpty(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview())
@@ -43,7 +43,7 @@ class MovieReviewTest extends DuskTestCase
      *
      * @throws \Throwable
      */
-    public function testMovieReviewTooShort()
+    public function testMovieReviewTooShort(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview())
@@ -59,7 +59,7 @@ class MovieReviewTest extends DuskTestCase
      *
      * @throws \Throwable
      */
-    public function testMovieReviewSuccess()
+    public function testMovieReviewSuccess(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new MovieReview())
