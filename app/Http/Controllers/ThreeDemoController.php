@@ -11,11 +11,8 @@ use Inertia\Response;
  */
 class ThreeDemoController extends Controller
 {
-
     /**
      * show the three demo
-     *
-     * @return Response
      */
     public function show(): Response
     {

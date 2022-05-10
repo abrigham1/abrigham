@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery;
 use Tests\TestCase;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
 
 /**
  * test redirect if authenticated middleware
@@ -18,7 +18,6 @@ use Illuminate\Contracts\Auth\Guard;
  */
 class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 {
-
     /**
      * test handle function
      *
@@ -45,12 +44,16 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
         $middleware = new RedirectIfAuthenticated();
 
         // test the handle call
-        $actual = $middleware->handle($request, function() { return "test"; }, $guard);
+        $actual = $middleware->handle($request, function () {
+            return "test";
+        }, $guard);
 
         // if we are authenticated expect to be redirected to the homepage
         if ($authenticated) {
             self::assertInstanceOf(
-                RedirectResponse::class, $actual, 'Failed asserting we have a redirect response'
+                RedirectResponse::class,
+                $actual,
+                'Failed asserting we have a redirect response'
             );
             self::assertEquals(302, $actual->getStatusCode());
             self::assertEquals(route('home'), $actual->getTargetUrl());
@@ -61,19 +64,17 @@ class RedirectIfAuthenticatedMiddlewareTest extends TestCase
 
     /**
      * handle data provider
-     *
-     * @return array
      */
     public function handleProvider(): array
     {
         return [
             'Authenticated' => [
                 // authenticated
-                true
+                true,
             ],
             'Not authenticated' => [
                 // authenticated
-                false
+                false,
             ],
         ];
     }

@@ -17,7 +17,6 @@ use Tests\TestCase;
  */
 class AppServiceProviderTest extends TestCase
 {
-
     /**
      * test register on local
      */

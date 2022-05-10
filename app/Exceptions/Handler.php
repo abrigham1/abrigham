@@ -2,15 +2,15 @@
 
 namespace App\Exceptions;
 
-use Throwable;
 use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Throwable;
 
 /**
  * Exception handler
@@ -47,8 +47,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Register the exception handling callbacks for the application
-     *
-     * @return void
      */
     public function register()
     {

@@ -12,7 +12,6 @@ use Tests\TestCase;
  */
 class ThreeDemoControllerTest extends TestCase
 {
-
     /**
      * test the three demo page
      */

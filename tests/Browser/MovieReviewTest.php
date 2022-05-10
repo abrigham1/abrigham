@@ -2,11 +2,11 @@
 
 namespace Tests\Browser;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Config;
+use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\MovieReview;
 use Tests\DuskTestCase;
-use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class MovieReviewTest extends DuskTestCase
 {
@@ -18,8 +18,8 @@ class MovieReviewTest extends DuskTestCase
     public function testMovieReviewPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new MovieReview)
-                    ->assertSee('Machine Learning with Scikit Learn');
+            $browser->visit(new MovieReview())
+                ->assertSee('Machine Learning with Scikit Learn');
         });
     }
 
@@ -31,7 +31,7 @@ class MovieReviewTest extends DuskTestCase
     public function testMovieReviewEmpty()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new MovieReview)
+            $browser->visit(new MovieReview())
                 ->click('@submit-review')
                 ->waitForText('Review is a required field', 10)
                 ->assertSee('Review is a required field');
@@ -46,7 +46,7 @@ class MovieReviewTest extends DuskTestCase
     public function testMovieReviewTooShort()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new MovieReview)
+            $browser->visit(new MovieReview())
                 ->type('@review', 'small review')
                 ->click('@submit-review')
                 ->waitForText('Review must be at least 15 characters', 10)
@@ -62,7 +62,7 @@ class MovieReviewTest extends DuskTestCase
     public function testMovieReviewSuccess()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new MovieReview)
+            $browser->visit(new MovieReview())
                 ->type('@review', 'Test to see if reviews still work.')
                 ->assertDontSee('Review must be at least 15 characters')
                 ->assertDontSee('Review is a required field')
@@ -70,6 +70,5 @@ class MovieReviewTest extends DuskTestCase
                 ->waitFor('@results', 10)
                 ->assertSeeIn('@results', 'The review is negative, I\'m 57.44% sure.');
         });
-
     }
 }
